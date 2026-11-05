@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Знакомство с HTML — учебный урок</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top-bar">
+    <a class="top-bar__brand" href="#top">HTML</a>
+    <button type="button" class="toc-toggle" id="toc-toggle" aria-expanded="false" aria-controls="toc">
+      Оглавление
+    </button>
+  </header>
+
+  <div class="layout" id="top">
+    <aside class="toc" id="toc">
+      <p class="toc__title">Оглавление</p>
+      <nav aria-label="Разделы урока">
+        <ul>
+          <li><a href="#что-такое">Что такое HTML</a></li>
+          <li><a href="#версии">Версии HTML</a></li>
+          <li><a href="#анатомия">Как устроен тег</a></li>
+          <li><a href="#парные">Парные и одинарные</a></li>
+          <li><a href="#атрибуты">Атрибуты</a></li>
+          <li><a href="#вложенность">Вложенность</a></li>
+          <li><a href="#структура">Структура страницы</a></li>
+          <li><a href="#популярные">Популярные теги</a></li>
+          <li><a href="#чеклист">Чеклист</a></li>
+          <li><a href="#практика">Практика</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <div class="hero">
+        <h1>Знакомство с HTML</h1>
+        <p>
+          Сегодня разберём «скелет» любой веб-страницы: что такое HTML,
+          как пишутся теги, зачем их вкладывать друг в друга и какие теги
+          встречаются почти везде. Внизу — живая практика во фрейме.
+        </p>
+      </div>
+
+      <!-- 1. Что такое HTML -->
+      <section class="section" id="что-такое">
+        <h2>1. Что такое HTML и зачем он нужен</h2>
+        <p>
+          <strong>HTML</strong> (HyperText Markup Language) — язык
+          <em>разметки</em>. Он не «программирует» как калькулятор и не
+          рисует красивые кнопки сам по себе. Он говорит браузеру:
+          «вот заголовок», «вот абзац», «вот картинка», «вот ссылка».
+        </p>
+
+        <div class="callout callout--analogy">
+          <span class="callout__label">Аналогия</span>
+          <p>
+            Представь дом. HTML — это стены, комнаты и двери (структура).
+            CSS — обои, цвет стен и мебель (внешний вид).
+            JavaScript — свет, дверной звонок и умный холодильник (поведение).
+            Сегодня учим именно «стены и комнаты».
+          </p>
+        </div>
+
+        <figure class="lesson-figure">
+          <img src="images/analogy-house.jpg" alt="Схема дома: HTML — стены и комнаты, CSS — обои и мебель, JavaScript — свет и звонок" width="960" height="540" loading="lazy">
+          <figcaption>Так проще запомнить роли: HTML строит дом, CSS украшает, JavaScript оживляет.</figcaption>
+        </figure>
+
+        <p>Без HTML браузер не поймёт, где текст, а где картинка. С HTML любая страница в интернете — от Википедии до игры — начинается с разметки.</p>
+
+        <h3>HTML — это не программа, а инструкция</h3>
+        <p>
+          Ты пишешь файл с расширением <code>.html</code>, открываешь его в браузере —
+          и браузер читает теги и показывает страницу. Ты управляешь смыслом
+          кусочков текста: что важнее, что является ссылкой, что — списком.
+        </p>
+      </section>
+
+      <!-- 2. Версии -->
+      <section class="section" id="версии">
+        <h2>2. Какие версии были и какая сейчас</h2>
+        <p>
+          HTML менялся много лет. Не нужно помнить все даты наизусть —
+          важно понимать: сейчас стандарт — <strong>HTML5</strong>,
+          и именно его пишут почти везде.
+        </p>
+
+        <p>Ниже — <strong>иллюстрации-реконструкции</strong>: как примерно выглядели сайты в разные эпохи (не точные скриншоты, а наглядные картинки для урока).</p>
+
+        <div class="versions">
+          <article class="version">
+            <img class="version__media" src="images/html-era-1.jpg" alt="Иллюстрация раннего сайта эпохи HTML 1–2: простой текст, синие ссылки, серый фон" width="960" height="540" loading="lazy">
+            <div class="version__body">
+              <h3 class="version__name">HTML 1–2</h3>
+              <p class="version__desc">Самое начало веба: текст, ссылки, картинки. Страницы были простые, как школьная стенгазета.</p>
+            </div>
+          </article>
+          <article class="version">
+            <img class="version__media" src="images/html-era-4.jpg" alt="Иллюстрация пёстрого сайта эпохи HTML 3–4: таблицы, яркие цвета, меню слева" width="960" height="540" loading="lazy">
+            <div class="version__body">
+              <h3 class="version__name">HTML 3–4</h3>
+              <p class="version__desc">Появились таблицы, формы, фреймы. Сайты стали сложнее и часто очень «кричащими» по оформлению.</p>
+            </div>
+          </article>
+          <article class="version">
+            <img class="version__media" src="images/html-era-xhtml.jpg" alt="Иллюстрация строгого корпоративного сайта эпохи XHTML: синий и серый, ровная сетка" width="960" height="540" loading="lazy">
+            <div class="version__body">
+              <h3 class="version__name">XHTML</h3>
+              <p class="version__desc">Строгие правила записи (почти как XML). Полезно для дисциплины, но многим казалось слишком жёстким.</p>
+            </div>
+          </article>
+          <article class="version version--current">
+            <img class="version__media" src="images/html-era-5.jpg" alt="Иллюстрация современного сайта HTML5: шапка, блоки, карточки, аккуратный дизайн" width="960" height="540" loading="lazy">
+            <div class="version__body">
+              <h3 class="version__name">HTML5</h3>
+              <p class="version__desc">Актуальная и самая популярная версия. Есть header, main, video, audio и понятная структура. Её и изучаем.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="callout callout--tip">
+          <span class="callout__label">Важно</span>
+          <p>
+            В начале файла пишут <code>&lt;!DOCTYPE html&gt;</code> —
+            это сигнал браузеру: «это современный HTML5, работай по новым правилам».
+          </p>
+        </div>
+      </section>
+
+      <!-- 3. Анатомия -->
+      <section class="section" id="анатомия">
+        <h2>3. Как пишутся теги</h2>
+        <p>
+          <strong>Тег</strong> — команда в угловых скобках: <code>&lt;p&gt;</code>.
+          <strong>Элемент</strong> — обычно открывающий тег + содержимое + закрывающий тег.
+        </p>
+
+        <div class="callout callout--analogy">
+          <span class="callout__label">Аналогия</span>
+          <p>
+            Как обложка тетради: слева написали «начало раздела», справа —
+            «конец раздела», а между ними — сам текст урока.
+          </p>
+        </div>
+
+        <div class="example">
+          <div class="example__code">
+            <span class="example__label">Код</span>
+            <pre><code>&lt;p&gt;Привет, класс!&lt;/p&gt;</code></pre>
+          </div>
+          <div class="example__preview">
+            <span class="example__label">Как выглядит</span>
+            <div class="example__preview-body">
+              <p>Привет, класс!</p>
+            </div>
+          </div>
+        </div>
+
+        <h3>Из чего состоит элемент</h3>
+        <ul>
+          <li><strong>Открывающий тег</strong> — <code>&lt;p&gt;</code> (начало)</li>
+          <li><strong>Содержимое</strong> — текст или другие теги</li>
+          <li><strong>Закрывающий тег</strong> — <code>&lt;/p&gt;</code> (слэш перед именем)</li>
+        </ul>
+
+        <div class="example">
+          <div class="example__code">
+            <span class="example__label">Код</span>
+            <pre><code>&lt;h1&gt;Мой сайт&lt;/h1&gt;
+&lt;p&gt;Это первый абзац.&lt;/p&gt;</code></pre>
+          </div>
+          <div class="example__preview">
+            <span class="example__label">Как выглядит</span>
+            <div class="example__preview-body">
+              <h1>Мой сайт</h1>
+              <p>Это первый абзац.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout callout--tip">
+          <span class="callout__label">Совет</span>
+          <p>
+            Теги можно писать большими буквами, но по привычке все пишут
+            <strong>строчными</strong>: <code>&lt;p&gt;</code>, а не <code>&lt;P&gt;</code>.
+            Так код легче читать всей команде.
+          </p>
+        </div>
+      </section>
+
+      <!-- 4. Парные и одинарные -->
+      <section class="section" id="парные">
+        <h2>4. Парные и одинарные теги</h2>
+        <p>
+          Есть теги, у которых есть «открыть» и «закрыть», и есть теги,
+          которым закрытие не нужно — внутри просто нечему быть.
+        </p>
+
+        <h3>Парные теги</h3>
+        <p>
+          Открылись — написали содержимое — закрылись. Как скобки в математике:
+          <code>( … )</code>.
+        </p>
+
+        <div class="example">
+          <div class="example__code">
+            <span class="example__label">Код</span>
+            <pre><code>&lt;strong&gt;Важно!&lt;/strong&gt;
+&lt;em&gt;Подчёркиваем смысл&lt;/em&gt;</code></pre>
+          </div>
+          <div class="example__preview">
+            <span class="example__label">Как выглядит</span>
+            <div class="example__preview-body">
+              <p><strong>Важно!</strong></p>
+              <p><em>Подчёркиваем смысл</em></p>
+            </div>
+          </div>
+        </div>
+
+        <h3>Одинарные (пустые) теги</h3>
+        <p>
+          У картинки нет «текста между тегами» — есть только сама картинка
+          и настройки (откуда взять файл). Такие теги <strong>только открываются</strong>.
+          Их ещё называют пустыми (void).
+        </p>
+
+        <div class="callout callout--analogy">
+          <span class="callout__label">Аналогия</span>
+          <p>
+            Парный тег — как папка: открыл, положил тетрадь, закрыл.
+            Одинарный — как наклейка: приклеил и всё, внутрь ничего не кладут.
+          </p>
+        </div>
+
+        <div class="example">
+          <div class="example__code">
+            <span class="example__label">Код</span>
+            <pre><code>&lt;p&gt;Первая строка.&lt;br&gt;Вторая строка.&lt;/p&gt;
+&lt;hr&gt;
+&lt;img src="photo.svg" alt="Схема" width="200"&gt;</code></pre>
+          </div>
+          <div class="example__preview">
+            <span class="example__label">Как выглядит</span>
+            <div class="example__preview-body">
+              <p>Первая строка.<br>Вторая строка.</p>
+              <hr>
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='80'%3E%3Crect fill='%23625071' width='200' height='80' rx='8'/%3E%3Ctext x='50%25' y='50%25' fill='white' font-family='sans-serif' font-size='16' text-anchor='middle' dominant-baseline='middle'%3EСхема%3C/text%3E%3C/svg%3E"
+                width="200"
+                height="80"
+                alt="Схема">
+            </div>
+          </div>
+        </div>
+
+        <p>Частые одинарные теги:</p>
+        <ul>
+          <li><code>&lt;br&gt;</code> — перенос строки</li>
+          <li><code>&lt;hr&gt;</code> — горизонтальная линия-разделитель</li>
+          <li><code>&lt;img&gt;</code> — изображение</li>
+          <li><code>&lt;meta&gt;</code> — служебная информация в «голове» страницы</li>
+          <li><code>&lt;input&gt;</code> — поле ввода в форме</li>
+        </ul>
+      </section>
+
+      <!-- 5. Атрибуты -->
+      <section class="section" id="атрибуты">
+        <h2>5. Атрибуты — настройки тега</h2>
+        <p>
+          <strong>Атрибут</strong> — дополнительная информация внутри открывающего тега.
+          Пишется так: имя, знак равенства, значение в кавычках.
+        </p>
+
+        <div class="callout callout--analogy">
+          <span class="callout__label">Аналогия</span>
+          <p>
+            Тег — коробка. Атрибуты — наклейки на коробке:
+            «откуда», «куда», «как называется», «для кого».
+          </p>
+        </div>
+
+        <div class="example">
+          <div class="example__code">
+            <span class="example__label">Код</span>
+            <pre><code>&lt;a href="https://example.com"&gt;
+  Перейти на example.com
+&lt;/a&gt;</code></pre>
+          </div>
+          <div class="example__preview">
+            <span class="example__label">Как выглядит</span>
+            <div class="example__preview-body">
+              <p><a href="https://example.com" target="_blank" rel="noopener">Перейти на example.com</a></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="example">
+          <div class="example__code">
+            <span class="example__label">Код</span>
+            <pre><code>&lt;img
+  src="cat.png"
+  alt="Рыжий кот на окне"
+  width="240"&gt;</code></pre>
+          </div>
+          <div class="example__preview">
+            <span class="example__label">Как выглядит</span>
+            <div class="example__preview-body">
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='120'%3E%3Crect fill='%23eaddff' width='240' height='120'/%3E%3Ccircle cx='120' cy='48' r='18' fill='%236750a4'/%3E%3Ctext x='50%25' y='78%25' fill='%2349454f' font-family='sans-serif' font-size='12' text-anchor='middle'%3Ealt: Рыжий кот на окне%3C/text%3E%3C/svg%3E"
+                width="240"
+                height="120"
+                alt="Рыжий кот на окне">
+            </div>
+          </div>
+        </div>
+
+        <h3>Популярные атрибуты</h3>
+        <ul>
+          <li><code>href</code> — адрес ссылки (у тега <code>a</code>)</li>
+          <li><code>src</code> — откуда взять картинку или скрипт</li>
+          <li><code>alt</code> — текстовое описание картинки (если файл не загрузился или для экранных читалок)</li>
+          <li><code>class</code> и <code>id</code> — «имена» для стилей и скриптов (позже пригодятся в CSS и JS)</li>
+          <li><code>width</code> / <code>height</code> — размер (осторожно: лучше не раздувать ими дизайн)</li>
+        </ul>
+
+        <div class="callout callout--tip">
+          <span class="callout__label">Правило записи</span>
+          <p>
+            Пиши так: <code>имя="значение"</code>. Кавычки важны.
+            Пробел между атрибутами обязателен:
+            <code>&lt;img src="a.png" alt="кот"&gt;</code>.
+          </p>
+        </div>
+      </section>
+
+      <!-- 6. Вложенность -->
+      <section class="section" id="вложенность">
+        <h2>6. Почему теги вкладывают друг в друга</h2>
+        <p>
+          Страница — не одна длинная лента команд, а <strong>дерево</strong>:
+          большие блоки содержат меньшие. Так браузер понимает структуру,
+          а ты — не путаешься в коде.
+        </p>
+
+        <div class="callout callout--analogy">
+          <span class="callout__label">Аналогия</span>
+          <p>
+            Как матрёшка или как рюкзак: в рюкзаке пенал, в пенале ручки.
+            Нельзя «закрыть рюкзак раньше пенала» — всё рассыплется.
+            В HTML то же самое: сначала закрываем внутреннее, потом внешнее.
+          </p>
+        </div>
+
+        <figure class="lesson-figure">
+          <img src="images/analogy-nesting.jpg" alt="Схема вложенных коробок: снаружи тег p, внутри strong, ещё глубже текст" width="960" height="540" loading="lazy">
+          <figcaption>Внутренний тег закрывается раньше внешнего — как коробка внутри коробки.</figcaption>
+        </figure>
+
+        <h3>Правильно</h3>
+        <div class="example">
+          <div class="example__code">
+            <span class="example__label">Код</span>
+            <pre><code>&lt;p&gt;
+  Кошка очень
+  &lt;strong&gt;голодная&lt;/strong&gt;.
+&lt;/p&gt;</code></pre>
+          </div>
+          <div class="example__preview">
+            <span class="example__label">Как выглядит</span>
+            <div class="example__preview-body">
+              <p>Кошка очень <strong>голодная</strong>.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout callout--ok">
+          <span class="callout__label">Почему так хорошо</span>
+          <p>
+            Открыли <code>p</code>, внутри открыли и закрыли <code>strong</code>,
+            потом закрыли <code>p</code>. Как матрёшка: внутренняя закрылась первой.
+          </p>
+        </div>
+
+        <h3>Неправильно (теги «перекрестились»)</h3>
+        <div class="example">
+          <div class="example__code">
+            <span class="example__label">Код</span>
+            <pre><code>&lt;p&gt;
+  Кошка очень
+  &lt;strong&gt;голодная.
+&lt;/p&gt;&lt;/strong&gt;</code></pre>
+          </div>
+          <div class="example__preview">
+            <span class="example__label">Как выглядит</span>
+            <div class="example__preview-body">
+              <p class="example__note">
+                Браузер попытается «угадать», что ты имел в виду.
+                Страница может отобразиться странно, а при сложных страницах
+                ошибки наслаиваются. Всегда закрывай теги в обратном порядке.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout callout--bad">
+          <span class="callout__label">Ошибка</span>
+          <p>
+            Здесь <code>strong</code> открыт внутри <code>p</code>, но закрыт уже снаружи.
+            Это как закрыть пенал после того, как застегнул рюкзак — логика ломается.
+          </p>
+        </div>
+
+        <h3>Ещё один понятный пример вложенности</h3>
+        <div class="example">
+          <div class="example__code">
+            <span class="example__label">Код</span>
+            <pre><code>&lt;ul&gt;
+  &lt;li&gt;Яблоки&lt;/li&gt;
+  &lt;li&gt;Груши&lt;/li&gt;
+  &lt;li&gt;Бананы&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+          </div>
+          <div class="example__preview">
+            <span class="example__label">Как выглядит</span>
+            <div class="example__preview-body">
+              <ul>
+                <li>Яблоки</li>
+                <li>Груши</li>
+                <li>Бананы</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <p>
+          Список <code>ul</code> — большая коробка. Каждый пункт <code>li</code> —
+          коробочка внутри. Без вложенности списка просто не существует.
+        </p>
+      </section>
+
+      <!-- 7. Структура -->
+      <section class="section" id="структура">
+        <h2>7. Структура HTML-документа</h2>
+        <p>
+          У каждой страницы есть каркас. Его почти всегда пишут одинаково —
+          выучи один раз, и будешь узнавать его везде.
+        </p>
+
+        <figure class="lesson-figure">
+          <img src="images/doc-structure.jpg" alt="Схема структуры HTML-документа: html, внутри head и body, в head — title и meta" width="960" height="540" loading="lazy">
+          <figcaption>Каркас файла: служебная часть в head, всё видимое — в body.</figcaption>
+        </figure>
+
+        <div class="example">
+          <div class="example__code">
+            <span class="example__label">Код</span>
+            <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ru"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Моя страница&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Привет!&lt;/h1&gt;
+  &lt;p&gt;Это видно на экране.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+          </div>
+          <div class="example__preview">
+            <span class="example__label">Как выглядит</span>
+            <div class="example__preview-body">
+              <h1>Привет!</h1>
+              <p>Это видно на экране.</p>
+            </div>
+          </div>
+        </div>
+
+        <ul>
+          <li><code>&lt;!DOCTYPE html&gt;</code> — говорим: это HTML5</li>
+          <li><code>&lt;html&gt;</code> — корень всего документа</li>
+          <li><code>&lt;head&gt;</code> — «служебная комната»: заголовок вкладки, кодировка, стили. На экране страницы почти не видно</li>
+          <li><code>&lt;title&gt;</code> — текст на вкладке браузера</li>
+          <li><code>&lt;meta charset="UTF-8"&gt;</code> — чтобы русские буквы не превратились в «кракозябры»</li>
+          <li><code>&lt;body&gt;</code> — всё, что видит пользователь</li>
+        </ul>
+
+        <div class="callout callout--analogy">
+          <span class="callout__label">Аналогия</span>
+          <p>
+            <code>head</code> — паспорт и записка на обложке тетради.
+            <code>body</code> — сами страницы с текстом и рисунками.
+          </p>
+        </div>
+      </section>
+
+      <!-- 8. Популярные теги -->
+      <section class="section" id="популярные">
+        <h2>8. Популярные теги, которые встречаются везде</h2>
+        <p>
+          Не пытайся выучить все теги сразу. Начни с тех, без которых
+          почти ни одна страница не обходится.
+        </p>
+
+        <div class="tag-grid">
+          <article class="tag-card">
+            <h3>&lt;h1&gt;…&lt;h6&gt;</h3>
+            <p>Заголовки. h1 — главный на странице, дальше по убыванию важности.</p>
+          </article>
+          <article class="tag-card">
+            <h3>&lt;p&gt;</h3>
+            <p>Обычный абзац текста.</p>
+          </article>
+          <article class="tag-card">
+            <h3>&lt;a&gt;</h3>
+            <p>Ссылка. Главный атрибут — href.</p>
+          </article>
+          <article class="tag-card">
+            <h3>&lt;img&gt;</h3>
+            <p>Картинка. Одинарный тег. Нужны src и alt.</p>
+          </article>
+          <article class="tag-card">
+            <h3>&lt;ul&gt; / &lt;ol&gt; / &lt;li&gt;</h3>
+            <p>Списки: маркированный, нумерованный и пункт списка.</p>
+          </article>
+          <article class="tag-card">
+            <h3>&lt;strong&gt; / &lt;em&gt;</h3>
+            <p>Важный текст и акцент (обычно жирный и курсив).</p>
+          </article>
+          <article class="tag-card">
+            <h3>&lt;div&gt; / &lt;span&gt;</h3>
+            <p>Универсальные «коробки»: div — блок, span — кусочек в строке.</p>
+          </article>
+          <article class="tag-card">
+            <h3>&lt;header&gt; &lt;main&gt; &lt;footer&gt; &lt;nav&gt; &lt;section&gt;</h3>
+            <p>Семантика HTML5: шапка, основное, подвал, меню, раздел.</p>
+          </article>
+          <article class="tag-card">
+            <h3>&lt;br&gt; / &lt;hr&gt;</h3>
+            <p>Перенос строки и горизонтальная линия.</p>
+          </article>
+          <article class="tag-card">
+            <h3>&lt;table&gt; &lt;tr&gt; &lt;th&gt; &lt;td&gt;</h3>
+            <p>Таблица: строки и ячейки (для данных, не для всей вёрстки).</p>
+          </article>
+        </div>
+
+        <h3>Заголовки и абзац</h3>
+        <div class="example">
+          <div class="example__code">
+            <span class="example__label">Код</span>
+            <pre><code>&lt;h1&gt;Школьный блог&lt;/h1&gt;
+&lt;h2&gt;Новости класса&lt;/h2&gt;
+&lt;p&gt;Сегодня мы учим HTML.&lt;/p&gt;</code></pre>
+          </div>
+          <div class="example__preview">
+            <span class="example__label">Как выглядит</span>
+            <div class="example__preview-body">
+              <h1>Школьный блог</h1>
+              <h2>Новости класса</h2>
+              <p>Сегодня мы учим HTML.</p>
+            </div>
+          </div>
+        </div>
+
+        <h3>Ссылка и выделение</h3>
+        <div class="example">
+          <div class="example__code">
+            <span class="example__label">Код</span>
+            <pre><code>&lt;p&gt;
+  Читай
+  &lt;a href="https://www.w3.org/"&gt;сайт W3C&lt;/a&gt;
+  — там стандарты веба.
+  Это &lt;strong&gt;официально&lt;/strong&gt;.
+&lt;/p&gt;</code></pre>
+          </div>
+          <div class="example__preview">
+            <span class="example__label">Как выглядит</span>
+            <div class="example__preview-body">
+              <p>
+                Читай
+                <a href="https://www.w3.org/" target="_blank" rel="noopener">сайт W3C</a>
+                — там стандарты веба.
+                Это <strong>официально</strong>.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <h3>Нумерованный список</h3>
+        <div class="example">
+          <div class="example__code">
+            <span class="example__label">Код</span>
+            <pre><code>&lt;ol&gt;
+  &lt;li&gt;Открыть редактор&lt;/li&gt;
+  &lt;li&gt;Написать HTML&lt;/li&gt;
+  &lt;li&gt;Открыть в браузере&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+          </div>
+          <div class="example__preview">
+            <span class="example__label">Как выглядит</span>
+            <div class="example__preview-body">
+              <ol>
+                <li>Открыть редактор</li>
+                <li>Написать HTML</li>
+                <li>Открыть в браузере</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <h3>Простая таблица</h3>
+        <div class="example">
+          <div class="example__code">
+            <span class="example__label">Код</span>
+            <pre><code>&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Предмет&lt;/th&gt;
+    &lt;th&gt;Оценка&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Информатика&lt;/td&gt;
+    &lt;td&gt;5&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+          </div>
+          <div class="example__preview">
+            <span class="example__label">Как выглядит</span>
+            <div class="example__preview-body">
+              <table>
+                <tr>
+                  <th>Предмет</th>
+                  <th>Оценка</th>
+                </tr>
+                <tr>
+                  <td>Информатика</td>
+                  <td>5</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <h3>Семантические блоки HTML5</h3>
+        <div class="example">
+          <div class="example__code">
+            <span class="example__label">Код</span>
+            <pre><code>&lt;header&gt;Шапка сайта&lt;/header&gt;
+&lt;nav&gt;Меню&lt;/nav&gt;
+&lt;main&gt;
+  &lt;section&gt;Основной текст&lt;/section&gt;
+&lt;/main&gt;
+&lt;footer&gt;Подвал&lt;/footer&gt;</code></pre>
+          </div>
+          <div class="example__preview">
+            <span class="example__label">Как выглядит</span>
+            <div class="example__preview-body">
+              <header style="background:#e8def8;padding:0.5rem;margin-bottom:0.35rem;">Шапка сайта</header>
+              <nav style="background:#f3edf7;padding:0.5rem;margin-bottom:0.35rem;">Меню</nav>
+              <main>
+                <section style="background:#fef7ff;padding:0.5rem;border:1px dashed #cac4d0;margin-bottom:0.35rem;">Основной текст</section>
+              </main>
+              <footer style="background:#e7e0ec;padding:0.5rem;">Подвал</footer>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout callout--tip">
+          <span class="callout__label">div и span</span>
+          <p>
+            Если нет подходящего смыслового тега — берут <code>div</code> (блок)
+            или <code>span</code> (фрагмент в строке). Но если смысл ясен
+            («это меню», «это статья»), лучше использовать семантические теги.
+          </p>
+        </div>
+      </section>
+
+      <!-- 9. Чеклист -->
+      <section class="section" id="чеклист">
+        <h2>9. Чеклист: как писать, чтобы не путаться</h2>
+        <ul class="checklist">
+          <li>В начале файла есть <code>&lt;!DOCTYPE html&gt;</code> и кодировка UTF-8</li>
+          <li>У парных тегов есть и открытие, и закрытие</li>
+          <li>Вложенность как матрёшка: внутреннее закрывается раньше внешнего</li>
+          <li>Атрибуты в кавычках: <code>href="..."</code>, <code>src="..."</code></li>
+          <li>У картинок есть <code>alt</code></li>
+          <li>На странице один главный <code>h1</code></li>
+          <li>Сохранил файл как <code>.html</code> и проверил в браузере</li>
+        </ul>
+      </section>
+
+      <!-- 10. Практика -->
+      <section class="section" id="практика">
+        <h2>10. Практика: смотрим настоящую страницу</h2>
+        <p>
+          Ниже во фрейме открыт файл <code>practice.html</code>.
+          Это отдельная страничка, собранная из самых обычных тегов.
+        </p>
+
+        <div class="callout callout--tip">
+          <span class="callout__label">Задание для класса</span>
+          <p>
+            Найдите на странице во фрейме: заголовок <code>h1</code>, абзац,
+            ссылку, картинку, нумерованный и маркированный списки, таблицу,
+            линию <code>hr</code>, а также шапку и подвал.
+            Потом откройте файл <code>practice.html</code> в редакторе
+            и сравните код с тем, что видите глазами.
+          </p>
+        </div>
+
+        <div class="practice-frame">
+          <div class="practice-frame__bar">
+            <span>practice.html</span>
+            <a href="practice.html" target="_blank" rel="noopener">Открыть в новой вкладке</a>
+          </div>
+          <iframe
+            src="practice.html"
+            title="Учебная страница практики с популярными HTML-тегами"
+            loading="lazy"></iframe>
+        </div>
+
+        <p>
+          Логика всегда одна и та же: тег задаёт роль кусочка страницы,
+          атрибуты уточняют детали, вложенность собирает страницу как конструктор.
+        </p>
+      </section>
+
+      <p class="footer-note">
+        Материалы для урока по Веб-дизайну, разработал А.А. Медин
+      </p>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      var toggle = document.getElementById("toc-toggle");
+      var toc = document.getElementById("toc");
+      if (!toggle || !toc) return;
+
+      toggle.addEventListener("click", function () {
+        var open = toc.classList.toggle("is-open");
+        toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+
+      toc.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+          if (window.matchMedia("(max-width: 959px)").matches) {
+            toc.classList.remove("is-open");
+            toggle.setAttribute("aria-expanded", "false");
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Практика: популярные теги</title>
+  <style>
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.5;
+      max-width: 40rem;
+      margin: 0 auto;
+      padding: 1.25rem;
+      color: #222;
+    }
+    header, footer {
+      background: #f0f0f0;
+      padding: 0.75rem 1rem;
+      margin-bottom: 1rem;
+    }
+    footer {
+      margin-top: 1.5rem;
+      margin-bottom: 0;
+      font-size: 0.9rem;
+    }
+    nav a {
+      margin-right: 0.75rem;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Моя первая учебная страница</h1>
+    <nav>
+      <a href="#про-котиков">Про котиков</a>
+      <a href="#список">Список дел</a>
+      <a href="#таблица">Таблица</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="про-котиков">
+      <h2>Зачем нужна эта страница</h2>
+      <p>
+        Здесь собраны <strong>самые частые</strong> HTML-теги.
+        Их используют почти на каждом сайте.
+      </p>
+      <p>
+        Текст можно выделить <em>курсивом</em>, а ссылка ведёт
+        <a href="https://developer.mozilla.org/ru/docs/Web/HTML" target="_blank" rel="noopener">
+          на справочник MDN
+        </a>.
+      </p>
+
+      <h3>Картинка</h3>
+      <p>
+        <img
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='160'%3E%3Crect fill='%236750a4' width='320' height='160'/%3E%3Ctext x='50%25' y='50%25' fill='white' font-family='sans-serif' font-size='22' text-anchor='middle' dominant-baseline='middle'%3EHTML%3C/text%3E%3C/svg%3E"
+          width="320"
+          height="160"
+          alt="Фиолетовый прямоугольник с надписью HTML">
+      </p>
+      <p>Подпись к картинке: это не файл с диска, а простая SVG-картинка прямо в коде.</p>
+    </section>
+
+    <hr>
+
+    <section id="список">
+      <h2>Список дел на урок</h2>
+      <ol>
+        <li>Прочитать теорию на главной странице</li>
+        <li>Найти на этой странице заголовок, абзац и ссылку</li>
+        <li>Открыть файл practice.html и сравнить код с тем, что видите</li>
+      </ol>
+
+      <h3>Что уже умеем</h3>
+      <ul>
+        <li>Писать парные теги</li>
+        <li>Добавлять атрибуты</li>
+        <li>Вкладывать теги друг в друга</li>
+      </ul>
+    </section>
+
+    <hr>
+
+    <section id="таблица">
+      <h2>Маленькая таблица</h2>
+      <table border="1" cellpadding="6" cellspacing="0">
+        <tr>
+          <th>Тег</th>
+          <th>Зачем</th>
+        </tr>
+        <tr>
+          <td>h1</td>
+          <td>Главный заголовок</td>
+        </tr>
+        <tr>
+          <td>p</td>
+          <td>Абзац текста</td>
+        </tr>
+        <tr>
+          <td>a</td>
+          <td>Ссылка</td>
+        </tr>
+      </table>
+      <br>
+      <p>Строка выше — после тега br. Он просто переносит текст на новую строку.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Подвал страницы. Здесь обычно пишут контакты или копирайт. © Урок HTML</p>
+  </footer>
+</body>
+</html>
