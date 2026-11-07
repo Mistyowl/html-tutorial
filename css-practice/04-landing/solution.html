@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Решение: лендинг IT-лагеря</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      /* бонус, не обязательно: плавная прокрутка к якорям */
+      scroll-behavior: smooth;
+      scroll-padding-top: 4.5rem;
+    }
+
+    body {
+      margin: 0;
+      font-family: Manrope, system-ui, sans-serif;
+      color: #0f172a;
+      background: #f8fafc;
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      color: #0369a1;
+    }
+
+    .wrap {
+      /* бонус: min() и margin-inline; можно заменить на max-width + margin: 0 auto */
+      width: min(100% - 2rem, 68rem);
+      margin-inline: auto;
+    }
+
+    /* —— Header —— */
+    .top {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.92);
+      border-bottom: 1px solid #e2e8f0;
+      /* бонус, не обязательно: размытие фона под шапкой */
+      backdrop-filter: blur(8px);
+    }
+
+    .top__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      min-height: 3.75rem;
+    }
+
+    .brand {
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: #0f172a;
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .brand span {
+      color: #0284c7;
+    }
+
+    .menu {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem 1rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: #475569;
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+
+    .menu a:hover {
+      color: #0284c7;
+    }
+
+    /* —— Hero —— */
+    .hero {
+      padding: 4rem 0 3.5rem;
+      /* бонус: radial-gradient; достаточно и linear-gradient или одного цвета */
+      background:
+        radial-gradient(ellipse 80% 60% at 80% 20%, #bae6fd 0%, transparent 55%),
+        radial-gradient(ellipse 60% 50% at 10% 80%, #e0f2fe 0%, transparent 50%),
+        #f0f9ff;
+    }
+
+    .hero__grid {
+      display: grid;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    @media (min-width: 800px) {
+      .hero__grid {
+        grid-template-columns: 1.1fr 0.9fr;
+      }
+    }
+
+    .hero h1 {
+      margin: 0 0 0.75rem;
+      /* бонус: clamp(); можно заменить на 2rem или 2.5rem */
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+    }
+
+    .hero p {
+      margin: 0 0 1.5rem;
+      font-size: 1.0625rem;
+      color: #334155;
+      max-width: 32rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 1.4rem;
+      border-radius: 999px;
+      background: #0284c7;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.9375rem;
+      text-decoration: none;
+      border: none;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+
+    .btn:hover {
+      background: #0369a1;
+      transform: translateY(-1px);
+    }
+
+    .hero__visual {
+      border-radius: 1.25rem;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(2, 132, 199, 0.2);
+    }
+
+    /* —— Sections —— */
+    section {
+      padding: 3.5rem 0;
+    }
+
+    section h2 {
+      margin: 0 0 0.5rem;
+      /* бонус: clamp() */
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      text-align: center;
+    }
+
+    .section-lead {
+      margin: 0 auto 2rem;
+      text-align: center;
+      color: #64748b;
+      max-width: 36rem;
+    }
+
+    .features {
+      display: grid;
+      gap: 1.25rem;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 700px) {
+      .features {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .feature {
+      padding: 1.35rem 1.25rem;
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 1rem;
+    }
+
+    .feature__icon {
+      font-size: 1.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .feature h3 {
+      margin: 0 0 0.4rem;
+      font-size: 1.05rem;
+    }
+
+    .feature p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #64748b;
+    }
+
+    .program {
+      background: #fff;
+      border-top: 1px solid #e2e8f0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .program ol {
+      max-width: 36rem;
+      margin: 0 auto;
+      padding-left: 1.25rem;
+    }
+
+    .program li {
+      margin-bottom: 0.65rem;
+    }
+
+    .reviews {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 700px) {
+      .reviews {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .review {
+      padding: 1.25rem;
+      background: #e0f2fe;
+      border-radius: 1rem;
+    }
+
+    .review p {
+      margin: 0 0 0.75rem;
+      font-size: 0.95rem;
+    }
+
+    .review cite {
+      font-style: normal;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: #0369a1;
+    }
+
+    .signup {
+      background: #0c4a6e;
+      color: #e0f2fe;
+    }
+
+    .signup h2 {
+      color: #fff;
+    }
+
+    .signup .section-lead {
+      color: #bae6fd;
+    }
+
+    .signup-form {
+      max-width: 28rem;
+      margin: 0 auto;
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .signup-form label {
+      display: grid;
+      gap: 0.3rem;
+      font-size: 0.8125rem;
+      font-weight: 600;
+    }
+
+    .signup-form input,
+    .signup-form select {
+      padding: 0.7rem 0.85rem;
+      border: 1px solid #38bdf8;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 1rem;
+    }
+
+    .signup-form input:focus,
+    .signup-form select:focus {
+      outline: 2px solid #7dd3fc;
+      outline-offset: 2px;
+    }
+
+    .signup-form .btn {
+      margin-top: 0.35rem;
+      background: #38bdf8;
+      color: #0c4a6e;
+    }
+
+    .signup-form .btn:hover {
+      background: #7dd3fc;
+    }
+
+    .footer {
+      padding: 1.5rem 0;
+      text-align: center;
+      font-size: 0.8125rem;
+      color: #64748b;
+      background: #fff;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    /* бонус, не обязательно: уважать системную настройку «меньше анимации» */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .btn {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap top__inner">
+      <a class="brand" href="#top">Code<span>Camp</span></a>
+      <nav aria-label="Навигация">
+        <ul class="menu">
+          <li><a href="#features">Преимущества</a></li>
+          <li><a href="#program">Программа</a></li>
+          <li><a href="#reviews">Отзывы</a></li>
+          <li><a href="#signup">Запись</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero__grid">
+        <div>
+          <h1>Летний IT-лагерь для школьников</h1>
+          <p>
+            Две недели практики: сайты, игры и командные проекты.
+            Без скучных лекций — только создание и результат.
+          </p>
+          <a class="btn" href="#signup">Записаться</a>
+        </div>
+        <div class="hero__visual">
+          <img
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='560'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%230284c7'/%3E%3Cstop offset='1' stop-color='%2338bdf8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23g)' width='800' height='560'/%3E%3Crect x='80' y='100' width='640' height='360' rx='20' fill='%23ffffff' fill-opacity='0.15'/%3E%3Ctext x='50%25' y='50%25' fill='white' font-family='sans-serif' font-size='42' font-weight='700' text-anchor='middle' dominant-baseline='middle'%3ECodeCamp 2026%3C/text%3E%3C/svg%3E"
+            width="800"
+            height="560"
+            alt="Иллюстрация CodeCamp 2026">
+        </div>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="wrap">
+        <h2>Почему к нам едут</h2>
+        <p class="section-lead">Три причины, которые обычно называют родители и ребята.</p>
+        <div class="features">
+          <article class="feature">
+            <div class="feature__icon" aria-hidden="true">💻</div>
+            <h3>Настоящий код</h3>
+            <p>HTML, CSS и немного JavaScript — сайт, который можно показать друзьям.</p>
+          </article>
+          <article class="feature">
+            <div class="feature__icon" aria-hidden="true">👥</div>
+            <h3>Команда</h3>
+            <p>Работаем в мини-группах, как в реальных IT-проектах.</p>
+          </article>
+          <article class="feature">
+            <div class="feature__icon" aria-hidden="true">🏕️</div>
+            <h3>Лето без экрана 24/7</h3>
+            <p>Спорт, квесты и вечерние активности между занятиями.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="program" id="program">
+      <div class="wrap">
+        <h2>Программа смены</h2>
+        <p class="section-lead">Короткий план на 14 дней.</p>
+        <ol>
+          <li>Знакомство, инструменты, первая HTML-страница</li>
+          <li>CSS: цвета, шрифты, блочная модель</li>
+          <li>Flex и Grid — собираем макеты</li>
+          <li>Мини-игра и командный лендинг</li>
+          <li>Защита проектов перед родителями</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="reviews">
+      <div class="wrap">
+        <h2>Отзывы</h2>
+        <p class="section-lead">Что говорят после смены.</p>
+        <div class="reviews">
+          <blockquote class="review">
+            <p>«Сделала свой первый сайт про хобби. Теперь хочу научиться делать кнопки поярче!»</p>
+            <cite>— Алина, 13 лет</cite>
+          </blockquote>
+          <blockquote class="review">
+            <p>«Сын приехал с портфолио из трёх страниц. И с друзьями из лагеря переписывается до сих пор.»</p>
+            <cite>— Мама Кирилла</cite>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <section class="signup" id="signup">
+      <div class="wrap">
+        <h2>Запись на смену</h2>
+        <p class="section-lead">Оставь контакты — мы пришлём анкету на почту.</p>
+        <form class="signup-form" action="#" method="post">
+          <label>
+            Имя участника
+            <input type="text" name="name" required placeholder="Имя">
+          </label>
+          <label>
+            Эл. почта родителя
+            <input type="email" name="email" required placeholder="parent@example.com">
+          </label>
+          <label>
+            Смена
+            <select name="shift">
+              <option>Июнь · 1–14</option>
+              <option>Июль · 1–14</option>
+              <option>Август · 1–14</option>
+            </select>
+          </label>
+          <button class="btn" type="submit">Отправить заявку</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p>© CodeCamp · учебный лендинг для урока по CSS</p>
+    </div>
+  </footer>
+</body>
+</html>

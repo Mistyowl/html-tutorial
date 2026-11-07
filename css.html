@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Знакомство с CSS — учебный урок</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top-bar">
+    <a class="top-bar__brand" href="#top">Веб-дизайн</a>
+    <nav class="top-bar__nav" aria-label="Уроки">
+      <a href="index.html">HTML</a>
+      <a href="css.html" aria-current="page">CSS</a>
+    </nav>
+    <button type="button" class="toc-toggle" id="toc-toggle" aria-expanded="false" aria-controls="toc">
+      Оглавление
+    </button>
+  </header>
+
+  <div class="layout" id="top">
+    <aside class="toc" id="toc">
+      <p class="toc__title">Оглавление</p>
+      <nav aria-label="Разделы урока">
+        <ul>
+          <li><a href="#что-такое">Что такое CSS</a></li>
+          <li><a href="#правило">Как устроено правило</a></li>
+          <li><a href="#devtools">DevTools</a></li>
+          <li><a href="#селекторы">Селекторы</a></li>
+          <li><a href="#цвета">Цвета и единицы</a></li>
+          <li><a href="#текст">Текст и шрифты</a></li>
+          <li><a href="#бокс">Блочная модель</a></li>
+          <li><a href="#фон">Фон, рамки, тени</a></li>
+          <li><a href="#display">display</a></li>
+          <li><a href="#flex">Flexbox</a></li>
+          <li><a href="#grid">Grid</a></li>
+          <li><a href="#позиция">Позиционирование</a></li>
+          <li><a href="#адаптив">Адаптивность</a></li>
+          <li><a href="#состояния">Переходы и состояния</a></li>
+          <li><a href="#чеклист">Чеклист</a></li>
+          <li><a href="#практика">Практика</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <div class="hero">
+        <h1>Знакомство с CSS</h1>
+        <p>
+          HTML задаёт структуру страницы. CSS отвечает за внешний вид:
+          цвета, отступы, шрифты, расположение блоков. Ниже — теория
+          с живыми примерами и четыре практических задания.
+        </p>
+      </div>
+
+      <!-- 1. Что такое CSS -->
+      <section class="section" id="что-такое">
+        <h2>1. Что такое CSS и зачем он нужен</h2>
+        <p>
+          <strong>CSS</strong> (Cascading Style Sheets) — язык
+          <em>стилей</em>. Он говорит браузеру: «этот заголовок синий»,
+          «у кнопки скруглённые углы», «меню в один ряд».
+        </p>
+
+        <div class="callout callout--analogy">
+          <span class="callout__label">Аналогия</span>
+          <p>
+            Вспомни дом из урока HTML. HTML — стены и комнаты.
+            CSS — обои, цвет стен, мебель и освещение. Без CSS страница
+            работает, но выглядит «голой».
+          </p>
+        </div>
+
+        <h3>Три способа подключить стили</h3>
+        <ol>
+          <li><strong>Атрибут</strong> <code>style=""</code> прямо на теге — удобно для быстрой пробы, плохо для большой страницы.</li>
+          <li>Тег <code>&lt;style&gt;</code> в <code>&lt;head&gt;</code> — стили на одной странице.</li>
+          <li>Файл <code>.css</code> и тег <code>&lt;link&gt;</code> — лучший способ: один файл на много страниц.</li>
+        </ol>
+
+        <div class="example">
+          <div class="example__code">
+            <span class="example__label">Код</span>
+            <pre><code>&lt;link rel="stylesheet" href="styles.css"&gt;</code></pre>
+          </div>
+          <div class="example__preview">
+            <span class="example__label">Как выглядит</span>
+            <div class="example__preview-body">
+              <p class="example__note" style="color: inherit;">
+                Эта строка в &lt;head&gt; подключает внешний файл стилей.
+                Так сделано на этой учебной странице.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout callout--tip">
+          <span class="callout__label">Почему лучше &lt;link&gt;</span>
+          <p>
+            Стили в одном месте: поменял цвет кнопки в файле — обновились
+            все страницы. HTML остаётся чистым и читаемым.
+          </p>
+        </div>
+
+        <h3>Комментарии в CSS</h3>
+        <p>
+          Всё между <code>/*</code> и <code>*/</code> браузер игнорирует.
+          В заготовках заданий такие комментарии подсказывают, что писать:
+        </p>
+        <div class="example">
+          <div class="example__code">
+            <span class="example__label">Код</span>
+            <pre><code>/* TODO: сделай фон белым */
+.card {
+  /* background: #fff; */
+}</code></pre>
+          </div>
+          <div class="example__preview">
+            <span class="example__label">Как выглядит</span>
+            <div class="example__preview-body">
+              <p class="example__note" style="color: inherit; margin: 0;">
+                Комментарии на экране не видны — они только для человека в коде.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Правило -->
+      <section class="section" id="правило">
+        <h2>2. Как устроено правило CSS</h2>
+        <p>
+          Правило состоит из <strong>селектора</strong> (кого красим)
+          и <strong>объявлений</strong> в фигурных скобках (как красим).
+        </p>
+
+        <div class="example">
+          <div class="example__code">
+            <div class="example__toolbar">
+              <span class="example__label">Код</span>
+              <div class="example__tabs" role="tablist" aria-label="Язык кода">
+                <button type="button" class="example__tab" role="tab" aria-selected="true" data-lang="css">CSS</button>
+                <button type="button" class="example__tab" role="tab" aria-selected="false" data-lang="html">HTML</button>
+              </div>
+            </div>
+            <pre data-lang="css"><code>p {
+  color: #6750a4;
+  font-size: 1.1rem;
+}</code></pre>
+            <pre data-lang="html" hidden><code>&lt;p&gt;Этот абзац окрашен правилом CSS.&lt;/p&gt;</code></pre>
+          </div>
+          <div class="example__preview">
+            <span class="example__label">Как выглядит</span>
+            <div class="example__preview-body">
+              <p style="color: #6750a4; font-size: 1.1rem; max-width: none;">
+                Этот абзац окрашен правилом CSS.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <ul>
+          <li><code>p</code> — селектор (все абзацы)</li>
+          <li><code>color</code> и <code>font-size</code> — свойства</li>
+          <li><code>#6750a4</code> и <code>1.1rem</code> — значения</li>
+          <li>После каждого свойства ставят <code>;</code></li>
+        </ul>
+
+        <div class="callout callout--analogy">
+          <span class="callout__label">Аналогия</span>
+          <p>
+            Селектор — адрес: «всем абзацам». Фигурные скобки — инструкция
+            внутри конверта. Свойство и значение — «сделай так: цвет фиолетовый».
+          </p>
+        </div>
+      </section>
+
+      <!-- 3. DevTools -->
+      <section class="section" id="devtools">
+        <h2>3. DevTools: учимся подсматривать</h2>
+        <p>
+          В браузере можно «заглянуть» в стили любого сайта. Это не магия —
+          обычный инструмент разработчика. Пользуйся им уже сейчас, на каждом примере.
+        </p>
+        <ol>
+          <li>Открой страницу и нажми <strong>F12</strong> (или ПКМ → «Просмотреть код»).</li>
+          <li>Вкладка <strong>Elements</strong> / «Элементы» — дерево HTML.</li>
+          <li>Справа <strong>Styles</strong> — какие правила действуют на выбранный элемент.</li>
+          <li>Вкладка <strong>Computed</strong> показывает итоговые размеры и схему блочной модели (margin → border → padding → content).</li>
+          <li>Кликни значение цвета или размера и поменяй — сразу видно эффект.</li>
+          <li>Иконка курсора в углу панели позволяет ткнуть элемент на странице.</li>
+        </ol>
+
+        <div class="callout callout--analogy">
+          <span class="callout__label">Зачем это на уроке</span>
+          <p>
+            Когда копируете шапку красивого сайта — смотрите в DevTools:
+            цвет фона, отступы, шрифт. Потом повторяете своими словами в CSS,
+            а не копируете чужой код целиком.
+          </p>
+        </div>
+      </section>
+
+      <!-- 4. Селекторы -->
+      <section class="section" id="селекторы">
+        <h2>4. Селекторы: кого выбираем</h2>
+        <p>
+          Чаще всего стили вешают не на все теги сразу, а на элементы
+          с классом. Класс в HTML — атрибут <code>class</code>,
+          в CSS перед именем пишут точку.
+        </p>
+
+        <div class="example">
+          <div class="example__code">
+            <div class="example__toolbar">
+              <span class="example__label">Код</span>
+              <div class="example__tabs" role="tablist" aria-label="Язык кода">
+                <button type="button" class="example__tab" role="tab" aria-selected="true" data-lang="css">CSS</button>
+                <button type="button" class="example__tab" role="tab" aria-selected="false" data-lang="html">HTML</button>
+              </div>
+            </div>
+            <pre data-lang="css"><code>.note {
+  color: #7d5260;
+  background: #ffd8e4;
+  padding: 0.5rem;
+}</code></pre>
+            <pre data-lang="html" hidden><code>&lt;p class="note"&gt;Подсказка&lt;/p&gt;</code></pre>
+          </div>
+          <div class="example__preview">
+            <span class="example__label">Как выглядит</span>
+            <div class="example__preview-body">
+              <p style="color:#7d5260;background:#ffd8e4;padding:0.5rem;border-radius:8px;max-width:none;margin:0;">Подсказка</p>
+            </div>
+          </div>
+        </div>
+
+        <h3>Основные виды</h3>
+        <ul>
+          <li><code>p</code> — все теги <code>&lt;p&gt;</code></li>
+          <li><code>.note</code> — все с классом <code>note</code></li>
+          <li><code>#logo</code> — один элемент с <code>id="logo"</code></li>
+          <li><code>*</code> — любой элемент (часто в сбросе: <code>*, *::before, *::after</code>)</li>
+          <li><code>h1, h2, h3</code> — группировка через запятую: одно правило на несколько селекторов</li>
+          <li><code>nav a</code> — ссылки внутри меню</li>
+          <li><code>button:hover</code> — кнопка, когда навели мышь</li>
+        </ul>
+
+        <p>
+          На одном элементе может быть несколько классов:
+          <code>&lt;button class="btn btn--primary"&gt;</code>.
+          В заготовках часто пишут имена вида <code>card__title</code>
+          (блок <code>card</code>, элемент <code>title</code>) — так проще читать код.
+        </p>
+
+        <div class="callout callout--tip">
+          <span class="callout__label">Кто сильнее</span>
+          <p>
+            Если два правила спорят, побеждает более «точное»:
+            класс сильнее тега, id сильнее класса. Если сила одинаковая —
+            побеждает то, что написано <em>ниже</em> в файле (каскад).
+            Для учёбы почти всегда хватает классов.
+          </p>
+        </div>
+
+        <h3>Наследование</h3>
+        <p>
+          Часть свойств дети получают от родителя сами: <code>color</code>,
+          <code>font-family</code>, <code>font-size</code>, <code>line-height</code>.
+          Отступы, рамки и фон <em>не</em> наследуются.
+        </p>
+        <ul>
+          <li><code>font-family: inherit</code> — взять шрифт у родителя (удобно для кнопок)</li>
+          <li>У браузера есть свои отступы у <code>body</code> — часто пишут
+            <code>body { margin: 0; }</code>, чтобы начать «с чистого листа»</li>
+        </ul>
+      </section>
+
+      <!-- 5. Цвета и единицы -->
+      <section class="section" id="цвета">
+        <h2>5. Цвета и единицы измерения</h2>
+        <p>Цвет можно задать по-разному. Для уроков удобны hex и названия.</p>
+
+        <div class="example">
+          <div class="example__code">
+            <div class="example__toolbar">
+              <span class="example__label">Код</span>
+              <div class="example__tabs" role="tablist" aria-label="Язык кода">
+                <button type="button" class="example__tab" role="tab" aria-selected="true" data-lang="css">CSS</button>
+                <button type="button" class="example__tab" role="tab" aria-selected="false" data-lang="html">HTML</button>
+              </div>
+            </div>
+            <pre data-lang="css"><code>.swatch-red { background: red; }
+.swatch-hex { background: #6750a4; }
+.swatch-rgb { background: rgb(103, 80, 164); }
+.swatch-rgba { background: rgba(103, 80, 164, 0.4); }</code></pre>
+            <pre data-lang="html" hidden><code>&lt;div class="swatch-red"&gt;red&lt;/div&gt;
+&lt;div class="swatch-hex"&gt;#6750a4&lt;/div&gt;
+&lt;div class="swatch-rgb"&gt;rgb()&lt;/div&gt;
+&lt;div class="swatch-rgba"&gt;rgba()&lt;/div&gt;</code></pre>
+          </div>
+          <div class="example__preview">
+            <span class="example__label">Как выглядит</span>
+            <div class="example__preview-body">
+              <div class="demo-swatches">
+                <div class="demo-swatch" style="background: red;">red</div>
+                <div class="demo-swatch" style="background: #6750a4;">#6750a4</div>
+                <div class="demo-swatch" style="background: rgb(103, 80, 164);">rgb()</div>
+                <div class="demo-swatch" style="background: rgba(103, 80, 164, 0.4); color: #21005d;">rgba()</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p>
+          <code>rgba()</code> — как <code>rgb()</code>, но с четвёртым числом:
+          прозрачность от <code>0</code> (невидимо) до <code>1</code> (непрозрачно).
+          Так делают мягкие тени: <code>rgba(0, 0, 0, 0.12)</code>.
+        </p>
+
+        <h3>Единицы размера: px, em, rem</h3>
+        <p>
+          Пока достаточно трёх единиц для текста и отступов.
+          Проценты (<code>%</code>) появятся чуть позже — после блочной модели,
+          когда станет ясно, кто «родитель», а кто «ребёнок».
+        </p>
+
+        <h3>px — пиксели</h3>
+        <p>
+          Самая простая единица: «столько-то точек на экране».
+          <code>16px</code> — обычный размер текста в браузере.
+          Удобно, но если пользователь увеличит шрифт в настройках,
+          жёсткие <code>px</code> иногда ведут себя хуже, чем <code>rem</code>.
+        </p>
+
+        <h3>em — «относительно шрифта рядом»</h3>
+        <p>
+          Буква <strong>em</strong> исторически означала ширину буквы «M».
+          В CSS <code>1em</code> = текущий размер шрифта <em>этого элемента</em>
+          (для свойства <code>font-size</code> — размер шрифта родителя).
+        </p>
+        <ul>
+          <li>У абзаца шрифт <code>20px</code> → <code>padding: 1em</code> даст отступ <code>20px</code></li>
+          <li>Если внутри поставить <code>font-size: 0.5em</code>, шрифт станет вдвое меньше родителя</li>
+          <li>Минус: при глубокой вложенности <code>em</code> «накапливаются» и легко запутаться</li>
+        </ul>
+
+        <div class="example">
+          <div class="example__code">
+            <div class="example__toolbar">
+              <span class="example__label">Код</span>
+              <div class="example__tabs" role="tablist" aria-label="Язык кода">
+                <button type="button" class="example__tab" role="tab" aria-selected="true" data-lang="css">CSS</button>
+                <button type="button" class="example__tab" role="tab" aria-selected="false" data-lang="html">HTML</button>
+              </div>
+            </div>
+            <pre data-lang="css"><code>.box {
+  font-size: 20px;
+  padding: 1em; /* = 20px */
+}
+.box small {
+  font-size: 0.75em; /* 75% от 20px = 15px */
+}</code></pre>
+            <pre data-lang="html" hidden><code>&lt;div class="box"&gt;
+  Обычный текст
+  &lt;small&gt;Мельче&lt;/small&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+          <div class="example__preview">
+            <span class="example__label">Как выглядит</span>
+            <div class="example__preview-body">
+              <div class="demo-em-box">
+                Обычный текст
+                <small>Мельче (0.75em)</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout callout--analogy">
+          <span class="callout__label">Аналогия</span>
+          <p>
+            <code>em</code> — как шаги относительно своего роста:
+            у высокого человека «один шаг» длиннее, у низкого — короче.
+            Если внутри ещё кто-то помельче, его шаги считаются уже от него.
+          </p>
+        </div>
+
+        <h3>rem — «относительно корня страницы»</h3>
+        <p>
+          <strong>rem</strong> = <em>root em</em>. Считается всегда от размера шрифта
+          у корня документа — тега <code>html</code>. В браузере по умолчанию
+          это обычно <strong>16px</strong>.
+        </p>
+        <ul>
+          <li><code>1rem</code> ≈ 16px</li>
+          <li><code>2rem</code> ≈ 32px</li>
+          <li><code>0.5rem</code> ≈ 8px</li>
+        </ul>
+        <p>
+          В отличие от <code>em</code>, вложенность не меняет расчёт:
+          хоть внутри десяти коробок, <code>1.5rem</code> везде одно и то же
+          (пока не меняли шрифт у <code>html</code>).
+        </p>
+
+        <div class="example">
+          <div class="example__code">
+            <div class="example__toolbar">
+              <span class="example__label">Код</span>
+              <div class="example__tabs" role="tablist" aria-label="Язык кода">
+                <button type="button" class="example__tab" role="tab" aria-selected="true" data-lang="css">CSS</button>
+                <button type="button" class="example__tab" role="tab" aria-selected="false" data-lang="html">HTML</button>
+              </div>
+            </div>
+            <pre data-lang="css"><code>/* У html по умолчанию ≈ 16px — в px не фиксируем */
+
+.title {
+  font-size: 2rem; /* ≈ 32px */
+  margin-bottom: 1rem; /* ≈ 16px */
+}</code></pre>
+            <pre data-lang="html" hidden><code>&lt;h2 class="title"&gt;Заголовок&lt;/h2&gt;</code></pre>
+          </div>
+          <div class="example__preview">
+            <span class="example__label">Как выглядит</span>
+            <div class="example__preview-body">
+              <p class="demo-rem-title">Заголовок 2rem</p>
+              <p style="margin:0;font-size:0.875rem;color:#49454f;">
+                Обычно пишут размеры текста и отступы в <code>rem</code> —
+                так проще держать всю страницу в одном ритме.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout callout--tip">
+          <span class="callout__label">Что брать на уроке</span>
+          <p>
+            Для текста и отступов почти всегда бери <code>rem</code>.
+            <code>px</code> — когда нужен совсем фиксированный размер
+            (тонкая рамка <code>1px</code>, иконка).
+            <code>em</code> — реже, когда отступ должен расти вместе
+            с шрифтом именно этого блока.
+          </p>
+        </div>
+
+        <div class="demo-units" aria-hidden="true">
+          <div class="demo-units__bar" style="width: 48px;">48px</div>
+          <div class="demo-units__bar" style="width: 3rem;">3rem</div>
+          <div class="demo-units__bar" style="width: 2em; font-size: 12px;">2em</div>
+        </div>
+        <p style="font-size: 0.875rem; color: var(--md-sys-color-on-surface-variant); max-width: 42rem;">
+          Полоски выше: слева фиксированные <code>48px</code>, посередине <code>3rem</code>
+          (≈ 48px от корня), справа <code>2em</code> при шрифте 12px — уже ≈ 24px,
+          потому что считается от «местного» шрифта.
+        </p>
+      </section>
+
+      <!-- 6. Текст -->
+      <section class="section" id="текст">
+        <h2>6. Текст и шрифты</h2>
+        <p>Частые свойства для текста:</p>
+        <ul>
+          <li><code>font-family</code> — семейство шрифта</li>
+          <li><code>font-size</code> — размер</li>
+          <li><code>font-weight</code> — толщина (<code>400</code>, <code>700</code>, <code>bold</code>)</li>
+          <li><code>line-height</code> — высота строки</li>
+          <li><code>text-align</code> — выравнивание: <code>left</code>, <code>center</code>, <code>right</code></li>
+          <li><code>color</code> — цвет текста</li>
+          <li><code>text-decoration</code> — <code>none</code> (убрать подчёркивание у ссылки), <code>line-through</code> (зачеркнуть старую цену)</li>
+          <li><code>letter-spacing</code> — расстояние между буквами</li>
+        </ul>
+
+        <div class="example">
+          <div class="example__code">
+            <div class="example__toolbar">
+              <span class="example__label">Код</span>
+              <div class="example__tabs" role="tablist" aria-label="Язык кода">
+                <button type="button" class="example__tab" role="tab" aria-selected="true" data-lang="css">CSS</button>
+                <button type="button" class="example__tab" role="tab" aria-selected="false" data-lang="html">HTML</button>
+              </div>
+            </div>
+            <pre data-lang="css"><code>h1 {
+  font-family: Roboto, sans-serif;
+  font-size: 2rem;
+  font-weight: 400;
+  text-align: center;
+  color: #21005d;
+}</code></pre>
+            <pre data-lang="html" hidden><code>&lt;h1&gt;Заголовок&lt;/h1&gt;</code></pre>
+          </div>
+          <div class="example__preview">
+            <span class="example__label">Как выглядит</span>
+            <div class="example__preview-body">
+              <h1 style="font-family:Roboto,sans-serif;font-size:2rem;font-weight:400;text-align:center;color:#21005d;margin:0;">
+                Заголовок
+              </h1>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout callout--tip">
+          <span class="callout__label">Google Fonts</span>
+          <p>
+            Красивые шрифты подключают ссылкой в <code>&lt;head&gt;</code>
+            (как Roboto на этой странице), а потом указывают в
+            <code>font-family</code>. Всегда добавляй запасной шрифт:
+            <code>sans-serif</code> или <code>serif</code>.
+          </p>
+        </div>
+      </section>
+
+      <!-- 7. Блочная модель -->
+      <section class="section" id="бокс">
+        <h2>7. Блочная модель: margin, border, padding</h2>
+        <p>
+          Каждый элемент — прямоугольник. Снаружи внутрь:
+          <strong>margin</strong> (отступ снаружи) →
+          <strong>border</strong> (рамка) →
+          <strong>padding</strong> (отступ внутри) →
+          содержимое.
+        </p>
+
+        <div class="callout callout--analogy">
+          <span class="callout__label">Аналогия</span>
+          <p>
+            Картина на стене: margin — расстояние до соседних картин,
+            border — рама, padding — пустое поле вокруг холста,
+            content — сама картина.
+          </p>
+        </div>
+
+        <div class="demo-box-model" aria-label="Схема блочной модели">
+          margin
+          <div class="demo-box-model__border">
+            border
+            <div class="demo-box-model__padding">
+              padding
+              <div class="demo-box-model__content">content</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="example">
+          <div class="example__code">
+            <div class="example__toolbar">
+              <span class="example__label">Код</span>
+              <div class="example__tabs" role="tablist" aria-label="Язык кода">
+                <button type="button" class="example__tab" role="tab" aria-selected="true" data-lang="css">CSS</button>
+                <button type="button" class="example__tab" role="tab" aria-selected="false" data-lang="html">HTML</button>
+              </div>
+            </div>
+            <pre data-lang="css"><code>.card {
+  width: 200px;
+  padding: 16px;
+  border: 2px solid #cac4d0;
+  margin: 12px;
+  box-sizing: border-box;
+}</code></pre>
+            <pre data-lang="html" hidden><code>&lt;div class="card"&gt;
+  Карточка с отступами
+&lt;/div&gt;</code></pre>
+          </div>
+          <div class="example__preview">
+            <span class="example__label">Как выглядит</span>
+            <div class="example__preview-body">
+              <div style="width:200px;padding:16px;border:2px solid #cac4d0;margin:12px;box-sizing:border-box;background:#f7f2fa;">
+                Карточка с отступами
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout callout--ok">
+          <span class="callout__label">Важно</span>
+          <p>
+            Пиши <code>box-sizing: border-box;</code> (часто на все элементы).
+            Тогда <code>width</code> включает padding и border —
+            ширину проще считать.
+          </p>
+        </div>
+
+        <h3>Сокращённая запись</h3>
+        <ul>
+          <li><code>padding: 1rem;</code> — со всех сторон</li>
+          <li><code>padding: 1rem 2rem;</code> — сверху/снизу, слева/справа</li>
+          <li><code>padding: 1rem 2rem 0.5rem;</code> — сверху, слева/справа, снизу</li>
+          <li><code>padding: 1rem 2rem 0.5rem 0;</code> — сверху, справа, снизу, слева (по часовой)</li>
+        </ul>
+        <p>То же работает для <code>margin</code>.</p>
+
+        <h3>max-width, центрирование и overflow</h3>
+        <ul>
+          <li><code>max-width: 22rem;</code> — «не шире этого»; удобно для карточек форм</li>
+          <li><code>margin: 0 auto;</code> — центрирует блок по горизонтали (нужна заданная ширина или max-width)</li>
+          <li><code>overflow: hidden;</code> — обрезает содержимое за краями; часто ставят на карточку со скруглением, чтобы картинка не «торчала»</li>
+        </ul>
+
+        <h3>Родитель, ребёнок и проценты (%)</h3>
+        <p>
+          В HTML теги вкладывают друг в друга. Внешний блок — <strong>родитель</strong>,
+          то, что внутри — <strong>ребёнок</strong> (дочерний элемент).
+        </p>
+
+        <div class="example">
+          <div class="example__code">
+            <div class="example__toolbar">
+              <span class="example__label">Код</span>
+              <div class="example__tabs" role="tablist" aria-label="Язык кода">
+                <button type="button" class="example__tab" role="tab" aria-selected="true" data-lang="html">HTML</button>
+                <button type="button" class="example__tab" role="tab" aria-selected="false" data-lang="css">CSS</button>
+              </div>
+            </div>
+            <pre data-lang="html"><code>&lt;div class="parent"&gt;
+  &lt;div class="child"&gt;Я ребёнок&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            <pre data-lang="css" hidden><code>.parent {
+  width: 300px;
+  background: #e8def8;
+  padding: 12px;
+}
+.child {
+  width: 50%; /* половина ширины родителя */
+  background: #6750a4;
+  color: #fff;
+  padding: 8px;
+}</code></pre>
+          </div>
+          <div class="example__preview">
+            <span class="example__label">Как выглядит</span>
+            <div class="example__preview-body">
+              <div class="demo-percent-parent">
+                <div class="demo-percent-child">Я ребёнок · 50%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p>
+          <code>width: 50%</code> у ребёнка — это «половина ширины родителя»,
+          не половина экрана. Если родитель шириной 300px, ребёнок ≈ 150px.
+        </p>
+
+        <div class="callout callout--tip">
+          <span class="callout__label">Ещё позже</span>
+          <p>
+            <code>vw</code> / <code>vh</code> — проценты от окна браузера
+            (viewport). Пригодятся для экрана во всю высоту:
+            <code>min-height: 100vh</code> в форме входа.
+          </p>
+        </div>
+      </section>
+
+      <!-- 8. Фон, рамки, тени -->
+      <section class="section" id="фон">
+        <h2>8. Фон, рамки, скругления и тени</h2>
+        <ul>
+          <li><code>background</code> / <code>background-color</code> — фон</li>
+          <li><code>background: linear-gradient(…)</code> — плавный переход цветов</li>
+          <li><code>border</code> — рамка</li>
+          <li><code>border-radius</code> — скругление углов</li>
+          <li><code>box-shadow</code> — тень</li>
+        </ul>
+
+        <div class="example">
+          <div class="example__code">
+            <div class="example__toolbar">
+              <span class="example__label">Код</span>
+              <div class="example__tabs" role="tablist" aria-label="Язык кода">
+                <button type="button" class="example__tab" role="tab" aria-selected="true" data-lang="css">CSS</button>
+                <button type="button" class="example__tab" role="tab" aria-selected="false" data-lang="html">HTML</button>
+              </div>
+            </div>
+            <pre data-lang="css"><code>.card {
+  background: #fff;
+  border: 1px solid #cac4d0;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  padding: 1rem;
+}</code></pre>
+            <pre data-lang="html" hidden><code>&lt;div class="card"&gt;
+  &lt;h4&gt;Карточка&lt;/h4&gt;
+  &lt;p&gt;Белый фон, скругление и лёгкая тень.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+          <div class="example__preview">
+            <span class="example__label">Как выглядит</span>
+            <div class="example__preview-body">
+              <div class="demo-card-preview">
+                <h4>Карточка</h4>
+                <p>Белый фон, скругление и лёгкая тень.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="example">
+          <div class="example__code">
+            <div class="example__toolbar">
+              <span class="example__label">Код</span>
+              <div class="example__tabs" role="tablist" aria-label="Язык кода">
+                <button type="button" class="example__tab" role="tab" aria-selected="true" data-lang="css">CSS</button>
+                <button type="button" class="example__tab" role="tab" aria-selected="false" data-lang="html">HTML</button>
+              </div>
+            </div>
+            <pre data-lang="css"><code>.hero-bg {
+  background: linear-gradient(160deg, #e0e7ff, #ede9fe);
+  padding: 1.5rem;
+  border-radius: 12px;
+}</code></pre>
+            <pre data-lang="html" hidden><code>&lt;div class="hero-bg"&gt;Градиентный фон&lt;/div&gt;</code></pre>
+          </div>
+          <div class="example__preview">
+            <span class="example__label">Как выглядит</span>
+            <div class="example__preview-body">
+              <div style="background:linear-gradient(160deg,#e0e7ff,#ede9fe);padding:1.5rem;border-radius:12px;">
+                Градиентный фон
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 9. display -->
+      <section class="section" id="display">
+        <h2>9. Свойство display</h2>
+        <p>Оно решает, как элемент ведёт себя в потоке страницы.</p>
+        <ul>
+          <li><code>block</code> — на всю ширину, с новой строки (<code>div</code>, <code>p</code>)</li>
+          <li><code>inline</code> — в строке, без своей ширины/высоты (<code>span</code>, <code>a</code>)</li>
+          <li><code>inline-block</code> — в строке, но можно задать ширину и отступы</li>
+          <li><code>none</code> — спрятать элемент</li>
+          <li><code>flex</code> / <code>grid</code> — современные раскладки (следующий раздел)</li>
+        </ul>
+
+        <div class="example">
+          <div class="example__code">
+            <div class="example__toolbar">
+              <span class="example__label">Код</span>
+              <div class="example__tabs" role="tablist" aria-label="Язык кода">
+                <button type="button" class="example__tab" role="tab" aria-selected="true" data-lang="css">CSS</button>
+                <button type="button" class="example__tab" role="tab" aria-selected="false" data-lang="html">HTML</button>
+              </div>
+            </div>
+            <pre data-lang="css"><code>.as-block { display: block; }
+.as-inline { display: inline; }
+.as-inline-block { display: inline-block; }</code></pre>
+            <pre data-lang="html" hidden><code>&lt;!-- block --&gt;
+&lt;span class="as-block"&gt;A&lt;/span&gt;
+&lt;span class="as-block"&gt;B&lt;/span&gt;
+
+&lt;!-- inline --&gt;
+&lt;span class="as-inline"&gt;A&lt;/span&gt;
+&lt;span class="as-inline"&gt;B&lt;/span&gt;
+
+&lt;!-- inline-block --&gt;
+&lt;span class="as-inline-block"&gt;A&lt;/span&gt;
+&lt;span class="as-inline-block"&gt;B&lt;/span&gt;</code></pre>
+          </div>
+          <div class="example__preview">
+            <span class="example__label">Как выглядит</span>
+            <div class="example__preview-body">
+              <p style="margin:0 0 0.35rem;font-size:0.75rem;color:#49454f;">block</p>
+              <div class="demo-display demo-display--block"><span>A</span><span>B</span></div>
+              <p style="margin:0.75rem 0 0.35rem;font-size:0.75rem;color:#49454f;">inline</p>
+              <div class="demo-display demo-display--inline"><span>A</span><span>B</span></div>
+              <p style="margin:0.75rem 0 0.35rem;font-size:0.75rem;color:#49454f;">inline-block</p>
+              <div class="demo-display demo-display--inline-block"><span>A</span><span>B</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. Flexbox -->
+      <section class="section" id="flex">
+        <h2>10. Flexbox — главный помощник вёрстки</h2>
+        <p>
+          На контейнер ставят <code>display: flex</code> — дети выстраиваются
+          в ряд (или колонку). Так делают шапки, строки цены и кнопки.
+        </p>
+
+        <ul>
+          <li><code>justify-content</code> — вдоль главной оси (горизонталь по умолчанию)</li>
+          <li><code>align-items</code> — поперёк оси (вертикаль)</li>
+          <li><code>gap</code> — промежуток между элементами</li>
+          <li><code>flex: 1</code> — «растянись и займи свободное место»</li>
+          <li><code>flex-direction: column</code> — столбиком</li>
+          <li><code>flex-wrap: wrap</code> — перенос на новую строку, если не влезает</li>
+          <li><code>margin-left: auto</code> — «отодвинь меня вправо» (часто для блока ссылок в шапке)</li>
+          <li><code>flex-shrink: 0</code> — «не сжимай меня»</li>
+          <li><code>order</code> и <code>flex-basis</code> — порядок и базовая ширина (пригодятся в адаптивной шапке)</li>
+        </ul>
+
+        <div class="example">
+          <div class="example__code">
+            <div class="example__toolbar">
+              <span class="example__label">Код</span>
+              <div class="example__tabs" role="tablist" aria-label="Язык кода">
+                <button type="button" class="example__tab" role="tab" aria-selected="true" data-lang="css">CSS</button>
+                <button type="button" class="example__tab" role="tab" aria-selected="false" data-lang="html">HTML</button>
+              </div>
+            </div>
+            <pre data-lang="css"><code>.row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.search {
+  flex: 1; /* растяни поиск */
+}
+.actions {
+  margin-left: auto; /* ссылки вправо */
+}</code></pre>
+            <pre data-lang="html" hidden><code>&lt;div class="row"&gt;
+  &lt;div&gt;Лого&lt;/div&gt;
+  &lt;div class="search"&gt;Поиск&lt;/div&gt;
+  &lt;div class="actions"&gt;Корзина&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+          <div class="example__preview">
+            <span class="example__label">Как выглядит</span>
+            <div class="example__preview-body">
+              <div class="demo-flex demo-flex--between">
+                <div class="demo-flex__item">Лого</div>
+                <div class="demo-flex__item demo-flex__grow">Поиск</div>
+                <div class="demo-flex__item">Корзина</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout callout--tip">
+          <span class="callout__label">Центр экрана</span>
+          <p>
+            Чтобы поставить карточку по центру окна:
+            <code>min-height: 100vh; display: flex; justify-content: center; align-items: center;</code>
+            на родителе. Пригодится в форме входа.
+          </p>
+        </div>
+      </section>
+
+      <!-- 11. Grid -->
+      <section class="section" id="grid">
+        <h2>11. Grid — сетка колонок</h2>
+        <p>
+          Flex удобен для одной строки или столбца. Grid — когда нужна
+          таблица из ячеек: карточки преимуществ, галерея.
+        </p>
+
+        <div class="example">
+          <div class="example__code">
+            <div class="example__toolbar">
+              <span class="example__label">Код</span>
+              <div class="example__tabs" role="tablist" aria-label="Язык кода">
+                <button type="button" class="example__tab" role="tab" aria-selected="true" data-lang="css">CSS</button>
+                <button type="button" class="example__tab" role="tab" aria-selected="false" data-lang="html">HTML</button>
+              </div>
+            </div>
+            <pre data-lang="css"><code>.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}</code></pre>
+            <pre data-lang="html" hidden><code>&lt;div class="grid"&gt;
+  &lt;div&gt;1&lt;/div&gt;
+  &lt;div&gt;2&lt;/div&gt;
+  &lt;div&gt;3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+          <div class="example__preview">
+            <span class="example__label">Как выглядит</span>
+            <div class="example__preview-body">
+              <div class="demo-grid">
+                <div class="demo-grid__item">1</div>
+                <div class="demo-grid__item">2</div>
+                <div class="demo-grid__item">3</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p>
+          <code>1fr</code> — «одна доля свободного места».
+          Три колонки по <code>1fr</code> — равные по ширине.
+        </p>
+      </section>
+
+      <!-- 12. Позиционирование -->
+      <section class="section" id="позиция">
+        <h2>12. Позиционирование</h2>
+        <ul>
+          <li><code>static</code> — обычное поведение (по умолчанию)</li>
+          <li><code>relative</code> — сдвиг относительно себя; якорь для absolute-детей</li>
+          <li><code>absolute</code> — привязка к ближайшему <em>спозиционированному</em> предку (<code>relative</code>, <code>absolute</code>, <code>fixed</code> или <code>sticky</code>). Если такого нет — к странице</li>
+          <li><code>sticky</code> — «липнет» при прокрутке. Нужен ещё <code>top: 0</code> (или другое значение), иначе эффекта не будет</li>
+          <li><code>fixed</code> — всегда на экране относительно окна</li>
+          <li><code>z-index</code> — кто выше при наложении (больше число — ближе к зрителю)</li>
+        </ul>
+
+        <div class="example">
+          <div class="example__code">
+            <div class="example__toolbar">
+              <span class="example__label">Код</span>
+              <div class="example__tabs" role="tablist" aria-label="Язык кода">
+                <button type="button" class="example__tab" role="tab" aria-selected="true" data-lang="css">CSS</button>
+                <button type="button" class="example__tab" role="tab" aria-selected="false" data-lang="html">HTML</button>
+              </div>
+            </div>
+            <pre data-lang="css"><code>.card { position: relative; }
+.badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+}</code></pre>
+            <pre data-lang="html" hidden><code>&lt;div class="card"&gt;
+  &lt;span class="badge"&gt;−20%&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+          <div class="example__preview">
+            <span class="example__label">Как выглядит</span>
+            <div class="example__preview-body">
+              <div class="demo-position">
+                <span class="demo-position__badge">−20%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 13. Адаптивность -->
+      <section class="section" id="адаптив">
+        <h2>13. Адаптивность: медиазапросы</h2>
+        <p>
+          На телефоне три колонки не помещаются. Медиазапрос меняет стили
+          при определённой ширине окна. Не забудь
+          <code>&lt;meta name="viewport" …&gt;</code> в HTML (см. урок HTML) —
+          без него телефон «прикинется» широким экраном.
+        </p>
+
+        <div class="example">
+          <div class="example__code">
+            <div class="example__toolbar">
+              <span class="example__label">Код</span>
+              <div class="example__tabs" role="tablist" aria-label="Язык кода">
+                <button type="button" class="example__tab" role="tab" aria-selected="true" data-lang="css">CSS</button>
+                <button type="button" class="example__tab" role="tab" aria-selected="false" data-lang="html">HTML</button>
+              </div>
+            </div>
+            <pre data-lang="css"><code>.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}</code></pre>
+            <pre data-lang="html" hidden><code>&lt;div class="grid"&gt;
+  &lt;div&gt;1&lt;/div&gt;
+  &lt;div&gt;2&lt;/div&gt;
+  &lt;div&gt;3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+          <div class="example__preview">
+            <span class="example__label">Как выглядит</span>
+            <div class="example__preview-body">
+              <p style="margin:0;font-size:0.875rem;">
+                Сузь окно браузера уже 600px — сетка из трёх колонок
+                (класс <code>.demo-grid</code>) станет одной колонкой.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <h3>Два подхода</h3>
+        <ul>
+          <li><code>@media (max-width: …)</code> — стили для экрана <em>уже</em> указанной ширины (сначала десктоп, потом упрощаем)</li>
+          <li><code>@media (min-width: …)</code> — стили для экрана <em>шире</em> (сначала мобильная версия, потом добавляем колонки). Так часто пишут лендинги</li>
+        </ul>
+
+        <div class="example">
+          <div class="example__code">
+            <div class="example__toolbar">
+              <span class="example__label">Код</span>
+              <div class="example__tabs" role="tablist" aria-label="Язык кода">
+                <button type="button" class="example__tab" role="tab" aria-selected="true" data-lang="css">CSS</button>
+                <button type="button" class="example__tab" role="tab" aria-selected="false" data-lang="html">HTML</button>
+              </div>
+            </div>
+            <pre data-lang="css"><code>.features {
+  display: grid;
+  grid-template-columns: 1fr; /* телефон */
+}
+
+@media (min-width: 700px) {
+  .features {
+    grid-template-columns: repeat(3, 1fr); /* шире */
+  }
+}</code></pre>
+            <pre data-lang="html" hidden><code>&lt;div class="features"&gt;…&lt;/div&gt;</code></pre>
+          </div>
+          <div class="example__preview">
+            <span class="example__label">Как выглядит</span>
+            <div class="example__preview-body">
+              <p class="example__note" style="color: inherit; margin: 0;">
+                Базовые стили — для узкого экрана. Медиазапрос с min-width
+                «включает» три колонки только на широком.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout callout--tip">
+          <span class="callout__label">Картинки</span>
+          <p>
+            Добавляй картинкам <code>max-width: 100%; height: auto;</code> —
+            они не вылезут за край экрана.
+          </p>
+        </div>
+      </section>
+
+      <!-- 14. Состояния -->
+      <section class="section" id="состояния">
+        <h2>14. Переходы и состояния</h2>
+        <p>
+          <code>:hover</code> — навели мышь, <code>:focus</code> — фокус
+          с клавиатуры (важно для полей формы). <code>:focus-visible</code> —
+          обводка только когда фокус с клавиатуры (удобнее для мыши).
+          <code>transition</code> делает смену плавной.
+        </p>
+        <ul>
+          <li><code>cursor: pointer</code> — рука над кликабельным элементом</li>
+          <li><code>outline</code> — обводка фокуса. Не убирай <code>outline: none</code>
+            без своей заметной замены (рамка или тень)</li>
+          <li><code>transform: translateY(-1px)</code> — лёгкий сдвиг при наведении</li>
+        </ul>
+
+        <div class="example">
+          <div class="example__code">
+            <div class="example__toolbar">
+              <span class="example__label">Код</span>
+              <div class="example__tabs" role="tablist" aria-label="Язык кода">
+                <button type="button" class="example__tab" role="tab" aria-selected="true" data-lang="css">CSS</button>
+                <button type="button" class="example__tab" role="tab" aria-selected="false" data-lang="html">HTML</button>
+              </div>
+            </div>
+            <pre data-lang="css"><code>.btn {
+  background: #6750a4;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+.btn:hover {
+  background: #5a4590;
+  transform: translateY(-1px);
+}
+.btn:focus-visible {
+  outline: 2px solid #6750a4;
+  outline-offset: 2px;
+}</code></pre>
+            <pre data-lang="html" hidden><code>&lt;button class="btn" type="button"&gt;
+  Наведи на меня
+&lt;/button&gt;</code></pre>
+          </div>
+          <div class="example__preview">
+            <span class="example__label">Как выглядит</span>
+            <div class="example__preview-body">
+              <button type="button" class="demo-btn">Наведи на меня</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 15. Чеклист -->
+      <section class="section" id="чеклист">
+        <h2>15. Чеклист: как писать CSS</h2>
+        <ul class="checklist">
+          <li>Стили в отдельном файле или в <code>&lt;style&gt;</code>, а не в куче <code>style=""</code></li>
+          <li>Используй классы: <code>class="card"</code> → <code>.card { … }</code></li>
+          <li>После свойства ставь точку с запятой</li>
+          <li>Включи <code>box-sizing: border-box</code></li>
+          <li>Для рядов — Flex, для сеток карточек — Grid</li>
+          <li>Картинки: <code>max-width: 100%</code></li>
+          <li>Проверь страницу на узком экране (или сузь окно)</li>
+          <li>Кнопки и поля имеют заметный <code>:hover</code> / <code>:focus-visible</code></li>
+          <li>Не убирай <code>outline</code> без своей замены</li>
+        </ul>
+      </section>
+
+      <!-- 16. Практика -->
+      <section class="section" id="практика">
+        <h2>16. Практика: четыре задания</h2>
+        <p>
+          У каждого задания есть <strong>заготовка</strong> (HTML готов,
+          в CSS — пустые правила с подсказками) и <strong>решение</strong>
+          для сравнения. Сначала открой заготовку и попробуй сам —
+          образец результата спрятан под спойлером.
+        </p>
+
+        <h3>1. Карточка товара</h3>
+        <p>Картинка, значок скидки, название, цены, кнопка «В корзину».</p>
+        <div class="practice-links">
+          <a href="css-practice/01-product-card/task.html" target="_blank" rel="noopener">Заготовка</a>
+          <a href="css-practice/01-product-card/solution.html" target="_blank" rel="noopener">Решение</a>
+        </div>
+        <details class="practice-spoiler">
+          <summary>Так должно получиться (открой после попытки)</summary>
+          <div class="practice-frame">
+            <div class="practice-frame__bar">
+              <span>01 — карточка товара</span>
+              <a href="css-practice/01-product-card/solution.html" target="_blank" rel="noopener">Открыть в новой вкладке</a>
+            </div>
+            <iframe
+              src="css-practice/01-product-card/solution.html"
+              title="Решение: карточка товара"
+              loading="lazy"></iframe>
+          </div>
+        </details>
+
+        <h3>2. Форма входа</h3>
+        <p>Карточка по центру экрана, поля, чекбокс, кнопка на всю ширину.</p>
+        <div class="practice-links">
+          <a href="css-practice/02-login-form/task.html" target="_blank" rel="noopener">Заготовка</a>
+          <a href="css-practice/02-login-form/solution.html" target="_blank" rel="noopener">Решение</a>
+        </div>
+        <details class="practice-spoiler">
+          <summary>Так должно получиться (открой после попытки)</summary>
+          <div class="practice-frame">
+            <div class="practice-frame__bar">
+              <span>02 — форма входа</span>
+              <a href="css-practice/02-login-form/solution.html" target="_blank" rel="noopener">Открыть в новой вкладке</a>
+            </div>
+            <iframe
+              src="css-practice/02-login-form/solution.html"
+              title="Решение: форма входа"
+              loading="lazy"></iframe>
+          </div>
+        </details>
+
+        <h3>3. Шапка в стиле маркетплейса</h3>
+        <p>
+          Синяя полоса, логотип, «Каталог», растягивающийся поиск,
+          ссылки «Заказы», «Избранное», «Корзина». Ориентир — шапки
+          вроде Ozon (свой текстовый логотип, без чужих картинок).
+        </p>
+        <div class="practice-links">
+          <a href="css-practice/03-header/task.html" target="_blank" rel="noopener">Заготовка</a>
+          <a href="css-practice/03-header/solution.html" target="_blank" rel="noopener">Решение</a>
+        </div>
+        <details class="practice-spoiler">
+          <summary>Так должно получиться (открой после попытки)</summary>
+          <div class="practice-frame">
+            <div class="practice-frame__bar">
+              <span>03 — шапка</span>
+              <a href="css-practice/03-header/solution.html" target="_blank" rel="noopener">Открыть в новой вкладке</a>
+            </div>
+            <iframe
+              src="css-practice/03-header/solution.html"
+              title="Решение: шапка сайта"
+              loading="lazy"></iframe>
+          </div>
+        </details>
+
+        <h3>4. Одностраничный лендинг</h3>
+        <p>
+          «Летний IT-лагерь»: липкая шапка, первый экран, сетка преимуществ,
+          программа, отзывы, форма записи, подвал.
+        </p>
+        <div class="practice-links">
+          <a href="css-practice/04-landing/task.html" target="_blank" rel="noopener">Заготовка</a>
+          <a href="css-practice/04-landing/solution.html" target="_blank" rel="noopener">Решение</a>
+        </div>
+        <details class="practice-spoiler">
+          <summary>Так должно получиться (открой после попытки)</summary>
+          <div class="practice-frame">
+            <div class="practice-frame__bar">
+              <span>04 — лендинг</span>
+              <a href="css-practice/04-landing/solution.html" target="_blank" rel="noopener">Открыть в новой вкладке</a>
+            </div>
+            <iframe
+              src="css-practice/04-landing/solution.html"
+              title="Решение: лендинг IT-лагеря"
+              loading="lazy"
+              style="height: min(80vh, 42rem);"></iframe>
+          </div>
+        </details>
+      </section>
+
+      <p class="footer-note">
+        Материалы для урока по Веб-дизайну, разработал А.А. Медин
+      </p>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      var toggle = document.getElementById("toc-toggle");
+      var toc = document.getElementById("toc");
+      if (toggle && toc) {
+        toggle.addEventListener("click", function () {
+          var open = toc.classList.toggle("is-open");
+          toggle.setAttribute("aria-expanded", open ? "true" : "false");
+        });
+
+        toc.querySelectorAll("a").forEach(function (link) {
+          link.addEventListener("click", function () {
+            if (window.matchMedia("(max-width: 959px)").matches) {
+              toc.classList.remove("is-open");
+              toggle.setAttribute("aria-expanded", "false");
+            }
+          });
+        });
+      }
+
+      document.querySelectorAll(".example__code").forEach(function (block) {
+        var tabs = block.querySelectorAll(".example__tab");
+        var panes = Array.prototype.slice.call(block.querySelectorAll("pre[data-lang]"));
+        if (!tabs.length || panes.length < 2) return;
+
+        var wrapper = document.createElement("div");
+        wrapper.className = "example__panes";
+        panes[0].parentNode.insertBefore(wrapper, panes[0]);
+        panes.forEach(function (pane) {
+          if (pane.hasAttribute("hidden")) {
+            pane.removeAttribute("hidden");
+            pane.classList.add("is-inactive");
+          }
+          wrapper.appendChild(pane);
+        });
+
+        tabs.forEach(function (tab) {
+          tab.addEventListener("click", function () {
+            var lang = tab.getAttribute("data-lang");
+            tabs.forEach(function (btn) {
+              btn.setAttribute("aria-selected", btn === tab ? "true" : "false");
+            });
+            panes.forEach(function (pane) {
+              if (pane.getAttribute("data-lang") === lang) {
+                pane.classList.remove("is-inactive");
+              } else {
+                pane.classList.add("is-inactive");
+              }
+            });
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

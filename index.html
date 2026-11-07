@@ -11,7 +11,11 @@
 </head>
 <body>
   <header class="top-bar">
-    <a class="top-bar__brand" href="#top">HTML</a>
+    <a class="top-bar__brand" href="#top">Веб-дизайн</a>
+    <nav class="top-bar__nav" aria-label="Уроки">
+      <a href="index.html" aria-current="page">HTML</a>
+      <a href="css.html">CSS</a>
+    </nav>
     <button type="button" class="toc-toggle" id="toc-toggle" aria-expanded="false" aria-controls="toc">
       Оглавление
     </button>
@@ -23,6 +27,7 @@
       <nav aria-label="Разделы урока">
         <ul>
           <li><a href="#что-такое">Что такое HTML</a></li>
+          <li><a href="#первый-файл">Первый файл</a></li>
           <li><a href="#версии">Версии HTML</a></li>
           <li><a href="#анатомия">Как устроен тег</a></li>
           <li><a href="#парные">Парные и одинарные</a></li>
@@ -30,6 +35,7 @@
           <li><a href="#вложенность">Вложенность</a></li>
           <li><a href="#структура">Структура страницы</a></li>
           <li><a href="#популярные">Популярные теги</a></li>
+          <li><a href="#формы">Формы</a></li>
           <li><a href="#чеклист">Чеклист</a></li>
           <li><a href="#практика">Практика</a></li>
         </ul>
@@ -81,9 +87,33 @@
         </p>
       </section>
 
-      <!-- 2. Версии -->
+      <!-- 2. Первый файл -->
+      <section class="section" id="первый-файл">
+        <h2>2. Как создать первый HTML-файл</h2>
+        <p>
+          Теория станет понятнее, если сразу открыть свою страницу в браузере.
+          Для этого нужен любой текстовый редактор и сам браузер.
+        </p>
+        <ol>
+          <li>Открой редактор: <strong>VS Code</strong>, «Блокнот» или другой удобный.</li>
+          <li>Создай новый файл и сохрани его как <code>index.html</code> (важно расширение <code>.html</code>).</li>
+          <li>Выбери кодировку <strong>UTF-8</strong> — иначе русские буквы могут «поплыть».</li>
+          <li>Напиши минимальный каркас (его разберём чуть позже) и сохрани файл.</li>
+          <li>Открой файл в браузере: двойной клик или перетащи файл на вкладку.</li>
+        </ol>
+
+        <div class="callout callout--tip">
+          <span class="callout__label">Совет</span>
+          <p>
+            Держи редактор и браузер рядом. Поменял код — сохранил — обновил
+            страницу (F5). Так учиться быстрее всего.
+          </p>
+        </div>
+      </section>
+
+      <!-- 3. Версии -->
       <section class="section" id="версии">
-        <h2>2. Какие версии были и какая сейчас</h2>
+        <h2>3. Какие версии были и какая сейчас</h2>
         <p>
           HTML менялся много лет. Не нужно помнить все даты наизусть —
           важно понимать: сейчас стандарт — <strong>HTML5</strong>,
@@ -97,14 +127,14 @@
             <img class="version__media" src="images/html-era-1.jpg" alt="Иллюстрация раннего сайта эпохи HTML 1–2: простой текст, синие ссылки, серый фон" width="960" height="540" loading="lazy">
             <div class="version__body">
               <h3 class="version__name">HTML 1–2</h3>
-              <p class="version__desc">Самое начало веба: текст, ссылки, картинки. Страницы были простые, как школьная стенгазета.</p>
+              <p class="version__desc">Самое начало веба: текст, ссылки, картинки. В HTML 2.0 уже появились формы. Страницы были простые, как школьная стенгазета.</p>
             </div>
           </article>
           <article class="version">
             <img class="version__media" src="images/html-era-4.jpg" alt="Иллюстрация пёстрого сайта эпохи HTML 3–4: таблицы, яркие цвета, меню слева" width="960" height="540" loading="lazy">
             <div class="version__body">
               <h3 class="version__name">HTML 3–4</h3>
-              <p class="version__desc">Появились таблицы, формы, фреймы. Сайты стали сложнее и часто очень «кричащими» по оформлению.</p>
+              <p class="version__desc">В 3.2 добавили таблицы, в 4.0 — фреймы. Сайты стали сложнее и часто очень «кричащими» по оформлению.</p>
             </div>
           </article>
           <article class="version">
@@ -118,10 +148,16 @@
             <img class="version__media" src="images/html-era-5.jpg" alt="Иллюстрация современного сайта HTML5: шапка, блоки, карточки, аккуратный дизайн" width="960" height="540" loading="lazy">
             <div class="version__body">
               <h3 class="version__name">HTML5</h3>
-              <p class="version__desc">Актуальная и самая популярная версия. Есть header, main, video, audio и понятная структура. Её и изучаем.</p>
+              <p class="version__desc">Привычное название современного HTML. Есть header, main, video, audio и понятная структура. Её и изучаем.</p>
             </div>
           </article>
         </div>
+
+        <p>
+          Сегодня стандарт развивается как <strong>HTML Living Standard</strong>
+          (живой стандарт WHATWG). Название «HTML5» осталось привычным:
+          так говорят о современном HTML с семантикой и мультимедиа.
+        </p>
 
         <div class="callout callout--tip">
           <span class="callout__label">Важно</span>
@@ -132,11 +168,11 @@
         </div>
       </section>
 
-      <!-- 3. Анатомия -->
+      <!-- 4. Анатомия -->
       <section class="section" id="анатомия">
-        <h2>3. Как пишутся теги</h2>
+        <h2>4. Как пишутся теги</h2>
         <p>
-          <strong>Тег</strong> — команда в угловых скобках: <code>&lt;p&gt;</code>.
+          <strong>Тег</strong> — метка в угловых скобках: <code>&lt;p&gt;</code>.
           <strong>Элемент</strong> — обычно открывающий тег + содержимое + закрывающий тег.
         </p>
 
@@ -193,9 +229,9 @@
         </div>
       </section>
 
-      <!-- 4. Парные и одинарные -->
+      <!-- 5. Парные и одинарные -->
       <section class="section" id="парные">
-        <h2>4. Парные и одинарные теги</h2>
+        <h2>5. Парные и одинарные теги</h2>
         <p>
           Есть теги, у которых есть «открыть» и «закрыть», и есть теги,
           которым закрытие не нужно — внутри просто нечему быть.
@@ -211,13 +247,13 @@
           <div class="example__code">
             <span class="example__label">Код</span>
             <pre><code>&lt;strong&gt;Важно!&lt;/strong&gt;
-&lt;em&gt;Подчёркиваем смысл&lt;/em&gt;</code></pre>
+&lt;em&gt;Делаем смысловой акцент&lt;/em&gt;</code></pre>
           </div>
           <div class="example__preview">
             <span class="example__label">Как выглядит</span>
             <div class="example__preview-body">
               <p><strong>Важно!</strong></p>
-              <p><em>Подчёркиваем смысл</em></p>
+              <p><em>Делаем смысловой акцент</em></p>
             </div>
           </div>
         </div>
@@ -266,11 +302,20 @@
           <li><code>&lt;meta&gt;</code> — служебная информация в «голове» страницы</li>
           <li><code>&lt;input&gt;</code> — поле ввода в форме</li>
         </ul>
+
+        <div class="callout callout--tip">
+          <span class="callout__label">Запись со слэшем</span>
+          <p>
+            В чужом коде можно встретить <code>&lt;br /&gt;</code> или <code>&lt;img … /&gt;</code>.
+            Это тоже нормально: так писали в эпоху XHTML. В современном HTML
+            достаточно <code>&lt;br&gt;</code> без слэша.
+          </p>
+        </div>
       </section>
 
-      <!-- 5. Атрибуты -->
+      <!-- 6. Атрибуты -->
       <section class="section" id="атрибуты">
-        <h2>5. Атрибуты — настройки тега</h2>
+        <h2>6. Атрибуты — настройки тега</h2>
         <p>
           <strong>Атрибут</strong> — дополнительная информация внутри открывающего тега.
           Пишется так: имя, знак равенства, значение в кавычках.
@@ -325,8 +370,30 @@
           <li><code>src</code> — откуда взять картинку или скрипт</li>
           <li><code>alt</code> — текстовое описание картинки (если файл не загрузился или для экранных читалок)</li>
           <li><code>class</code> и <code>id</code> — «имена» для стилей и скриптов (позже пригодятся в CSS и JS)</li>
-          <li><code>width</code> / <code>height</code> — размер (осторожно: лучше не раздувать ими дизайн)</li>
+          <li><code>width</code> / <code>height</code> — размеры картинки в пикселях. Их стоит указывать у <code>img</code>, чтобы страница не «прыгала», пока файл грузится. Внешний вид потом донастраивают в CSS</li>
+          <li><code>target="_blank"</code> — открыть ссылку в новой вкладке (добавляй ещё <code>rel="noopener"</code>)</li>
         </ul>
+
+        <h3>Пути: куда ведёт ссылка или картинка</h3>
+        <ul>
+          <li><strong>Относительный</strong> — от текущей папки: <code>images/cat.png</code>, <code>../styles.css</code></li>
+          <li><strong>Абсолютный</strong> — полный адрес в интернете: <code>https://example.com/page.html</code></li>
+        </ul>
+
+        <h3>Якорь на странице</h3>
+        <p>
+          Если у блока есть <code>id="про-котиков"</code>, ссылка
+          <code>&lt;a href="#про-котиков"&gt;</code> прокрутит страницу к этому блоку.
+          Так работает оглавление этого урока и меню на лендингах.
+        </p>
+
+        <h3>Логические атрибуты</h3>
+        <p>
+          У некоторых атрибутов нет значения — достаточно самого имени:
+          <code>required</code> (поле обязательно), <code>checked</code> (галочка уже стоит),
+          <code>disabled</code> (элемент выключен). Пишут так:
+          <code>&lt;input type="checkbox" checked&gt;</code>.
+        </p>
 
         <div class="callout callout--tip">
           <span class="callout__label">Правило записи</span>
@@ -338,9 +405,9 @@
         </div>
       </section>
 
-      <!-- 6. Вложенность -->
+      <!-- 7. Вложенность -->
       <section class="section" id="вложенность">
-        <h2>6. Почему теги вкладывают друг в друга</h2>
+        <h2>7. Почему теги вкладывают друг в друга</h2>
         <p>
           Страница — не одна длинная лента команд, а <strong>дерево</strong>:
           большие блоки содержат меньшие. Так браузер понимает структуру,
@@ -443,9 +510,9 @@
         </p>
       </section>
 
-      <!-- 7. Структура -->
+      <!-- 8. Структура -->
       <section class="section" id="структура">
-        <h2>7. Структура HTML-документа</h2>
+        <h2>8. Структура HTML-документа</h2>
         <p>
           У каждой страницы есть каркас. Его почти всегда пишут одинаково —
           выучи один раз, и будешь узнавать его везде.
@@ -463,9 +530,11 @@
 &lt;html lang="ru"&gt;
 &lt;head&gt;
   &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
   &lt;title&gt;Моя страница&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
+  &lt;!-- Это комментарий: браузер его не показывает --&gt;
   &lt;h1&gt;Привет!&lt;/h1&gt;
   &lt;p&gt;Это видно на экране.&lt;/p&gt;
 &lt;/body&gt;
@@ -486,8 +555,17 @@
           <li><code>&lt;head&gt;</code> — «служебная комната»: заголовок вкладки, кодировка, стили. На экране страницы почти не видно</li>
           <li><code>&lt;title&gt;</code> — текст на вкладке браузера</li>
           <li><code>&lt;meta charset="UTF-8"&gt;</code> — чтобы русские буквы не превратились в «кракозябры»</li>
+          <li><code>&lt;meta name="viewport" …&gt;</code> — чтобы страница нормально масштабировалась на телефоне. Без этой строки адаптивный CSS почти бесполезен</li>
           <li><code>&lt;body&gt;</code> — всё, что видит пользователь</li>
         </ul>
+
+        <div class="callout callout--tip">
+          <span class="callout__label">Комментарии</span>
+          <p>
+            Пишутся так: <code>&lt;!-- текст --&gt;</code>. Браузер их не показывает,
+            зато ты можешь оставлять себе подсказки в коде.
+          </p>
+        </div>
 
         <div class="callout callout--analogy">
           <span class="callout__label">Аналогия</span>
@@ -498,9 +576,9 @@
         </div>
       </section>
 
-      <!-- 8. Популярные теги -->
+      <!-- 9. Популярные теги -->
       <section class="section" id="популярные">
-        <h2>8. Популярные теги, которые встречаются везде</h2>
+        <h2>9. Популярные теги, которые встречаются везде</h2>
         <p>
           Не пытайся выучить все теги сразу. Начни с тех, без которых
           почти ни одна страница не обходится.
@@ -547,6 +625,27 @@
             <h3>&lt;table&gt; &lt;tr&gt; &lt;th&gt; &lt;td&gt;</h3>
             <p>Таблица: строки и ячейки (для данных, не для всей вёрстки).</p>
           </article>
+          <article class="tag-card">
+            <h3>&lt;article&gt;</h3>
+            <p>Самостоятельный блок: карточка товара, пост, новость.</p>
+          </article>
+          <article class="tag-card">
+            <h3>&lt;blockquote&gt;</h3>
+            <p>Цитата или отзыв. Часто с подписью <code>cite</code> внутри.</p>
+          </article>
+          <article class="tag-card">
+            <h3>&lt;button&gt;</h3>
+            <p>Кнопка. Для действий на странице; укажи <code>type="button"</code> или <code>type="submit"</code>.</p>
+          </article>
+        </div>
+
+        <div class="callout callout--tip">
+          <span class="callout__label">Заголовки — по смыслу</span>
+          <p>
+            Уровень <code>h1</code>–<code>h6</code> выбирают не «по размеру шрифта»,
+            а по иерархии: один главный <code>h1</code>, внутри раздела — <code>h2</code>,
+            внутри подраздела — <code>h3</code>. Не перескакивай с <code>h1</code> сразу на <code>h3</code>.
+          </p>
         </div>
 
         <h3>Заголовки и абзац</h3>
@@ -679,23 +778,100 @@
         </div>
       </section>
 
-      <!-- 9. Чеклист -->
+      <!-- 10. Формы -->
+      <section class="section" id="формы">
+        <h2>10. Формы: поля и кнопки</h2>
+        <p>
+          Форма собирает данные от пользователя: вход на сайт, поиск, запись
+          на мероприятие. Без форм почти ни один современный сайт не обходится.
+        </p>
+
+        <ul>
+          <li><code>&lt;form&gt;</code> — обёртка всей формы</li>
+          <li><code>&lt;label&gt;</code> — подпись к полю; связывай через <code>for</code> и <code>id</code></li>
+          <li><code>&lt;input&gt;</code> — поле ввода (одинарный тег)</li>
+          <li><code>&lt;select&gt;</code> и <code>&lt;option&gt;</code> — выпадающий список</li>
+          <li><code>&lt;button type="submit"&gt;</code> — отправить форму</li>
+        </ul>
+
+        <h3>Типы input</h3>
+        <ul>
+          <li><code>type="text"</code> — обычный текст</li>
+          <li><code>type="email"</code> — электронная почта</li>
+          <li><code>type="password"</code> — пароль (символы скрыты)</li>
+          <li><code>type="checkbox"</code> — галочка</li>
+          <li><code>type="search"</code> — поле поиска</li>
+        </ul>
+
+        <div class="example">
+          <div class="example__code">
+            <span class="example__label">Код</span>
+            <pre><code>&lt;form action="#" method="post"&gt;
+  &lt;label for="name"&gt;Имя&lt;/label&gt;
+  &lt;input type="text" id="name" name="name" required&gt;
+
+  &lt;label for="mail"&gt;Почта&lt;/label&gt;
+  &lt;input type="email" id="mail" name="email"&gt;
+
+  &lt;label&gt;
+    &lt;input type="checkbox" name="agree"&gt;
+    Согласен с правилами
+  &lt;/label&gt;
+
+  &lt;button type="submit"&gt;Отправить&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+          </div>
+          <div class="example__preview">
+            <span class="example__label">Как выглядит</span>
+            <div class="example__preview-body">
+              <form action="#" method="post" onsubmit="return false;" style="display:grid;gap:0.65rem;max-width:16rem;">
+                <label for="demo-name" style="display:grid;gap:0.25rem;font-size:0.875rem;">
+                  Имя
+                  <input type="text" id="demo-name" name="name" required>
+                </label>
+                <label for="demo-mail" style="display:grid;gap:0.25rem;font-size:0.875rem;">
+                  Почта
+                  <input type="email" id="demo-mail" name="email">
+                </label>
+                <label style="display:flex;align-items:center;gap:0.4rem;font-size:0.875rem;">
+                  <input type="checkbox" name="agree">
+                  Согласен с правилами
+                </label>
+                <button type="submit">Отправить</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout callout--tip">
+          <span class="callout__label">Важно</span>
+          <p>
+            У каждого поля должна быть подпись <code>label</code>. Так удобнее
+            кликать и понятнее экранным читалкам. Атрибут <code>name</code>
+            нужен, чтобы сервер понял, какое это поле.
+          </p>
+        </div>
+      </section>
+
+      <!-- 11. Чеклист -->
       <section class="section" id="чеклист">
-        <h2>9. Чеклист: как писать, чтобы не путаться</h2>
+        <h2>11. Чеклист: как писать, чтобы не путаться</h2>
         <ul class="checklist">
           <li>В начале файла есть <code>&lt;!DOCTYPE html&gt;</code> и кодировка UTF-8</li>
+          <li>В <code>head</code> есть <code>meta viewport</code> для телефонов</li>
           <li>У парных тегов есть и открытие, и закрытие</li>
           <li>Вложенность как матрёшка: внутреннее закрывается раньше внешнего</li>
           <li>Атрибуты в кавычках: <code>href="..."</code>, <code>src="..."</code></li>
           <li>У картинок есть <code>alt</code></li>
           <li>На странице один главный <code>h1</code></li>
+          <li>У каждого поля формы есть <code>label</code></li>
           <li>Сохранил файл как <code>.html</code> и проверил в браузере</li>
         </ul>
       </section>
 
-      <!-- 10. Практика -->
+      <!-- 12. Практика -->
       <section class="section" id="практика">
-        <h2>10. Практика: смотрим настоящую страницу</h2>
+        <h2>12. Практика: смотрим настоящую страницу</h2>
         <p>
           Ниже во фрейме открыт файл <code>practice.html</code>.
           Это отдельная страничка, собранная из самых обычных тегов.
@@ -706,7 +882,7 @@
           <p>
             Найдите на странице во фрейме: заголовок <code>h1</code>, абзац,
             ссылку, картинку, нумерованный и маркированный списки, таблицу,
-            линию <code>hr</code>, а также шапку и подвал.
+            линию <code>hr</code>, шапку и подвал, а также форму.
             Потом откройте файл <code>practice.html</code> в редакторе
             и сравните код с тем, что видите глазами.
           </p>

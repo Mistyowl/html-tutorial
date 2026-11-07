@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Задание: форма входа</title>
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    /* TODO: центрируй форму на экране:
+       min-height: 100vh; display: flex; justify-content: center; align-items: center; */
+    body {
+      margin: 0;
+      padding: 1.5rem;
+      font-family: system-ui, sans-serif;
+      background: #e2e8f0;
+      color: #1e293b;
+    }
+
+    /* TODO: белая карточка, max-width ~22rem, padding, border-radius, тень */
+    .login {
+    }
+
+    .login__title {
+    }
+
+    .login__subtitle {
+    }
+
+    .login__field {
+    }
+
+    /* TODO: подпись над полем — display: block, небольшой отступ снизу */
+    .login__label {
+    }
+
+    /* TODO: поле на всю ширину, рамка, padding, :focus с цветной обводкой */
+    .login__input {
+    }
+
+    .login__input:focus {
+    }
+
+    /* TODO: чекбокс слева, ссылка справа — flex + space-between */
+    .login__row {
+    }
+
+    .login__remember {
+    }
+
+    .login__link {
+    }
+
+    /* TODO: кнопка на всю ширину, яркий фон, hover */
+    .login__submit {
+    }
+
+    .login__submit:hover {
+    }
+  </style>
+</head>
+<body>
+  <form class="login" action="#" method="post">
+    <h1 class="login__title">Вход</h1>
+    <p class="login__subtitle">Добро пожаловать обратно</p>
+
+    <div class="login__field">
+      <label class="login__label" for="email">Эл. почта</label>
+      <input class="login__input" type="email" id="email" name="email" placeholder="name@example.com" autocomplete="username">
+    </div>
+
+    <div class="login__field">
+      <label class="login__label" for="password">Пароль</label>
+      <input class="login__input" type="password" id="password" name="password" placeholder="••••••••" autocomplete="current-password">
+    </div>
+
+    <div class="login__row">
+      <label class="login__remember">
+        <input type="checkbox" name="remember">
+        Запомнить меня
+      </label>
+      <a class="login__link" href="#">Забыли пароль?</a>
+    </div>
+
+    <button class="login__submit" type="submit">Войти</button>
+  </form>
+</body>
+</html>

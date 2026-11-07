@@ -31,6 +31,36 @@
       height: auto;
       border: 1px solid #ccc;
     }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 20rem;
+    }
+    th, td {
+      border: 1px solid #999;
+      padding: 0.4rem 0.6rem;
+      text-align: left;
+    }
+    th {
+      background: #f5f5f5;
+    }
+    .feedback label {
+      display: block;
+      margin-bottom: 0.35rem;
+      font-size: 0.95rem;
+    }
+    .feedback input[type="text"] {
+      width: 100%;
+      max-width: 16rem;
+      padding: 0.4rem 0.5rem;
+      margin-bottom: 0.75rem;
+      box-sizing: border-box;
+    }
+    .feedback button {
+      padding: 0.45rem 0.9rem;
+      font-family: inherit;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -40,6 +70,7 @@
       <a href="#про-котиков">Про котиков</a>
       <a href="#список">Список дел</a>
       <a href="#таблица">Таблица</a>
+      <a href="#форма">Форма</a>
     </nav>
   </header>
 
@@ -66,6 +97,7 @@
           alt="Фиолетовый прямоугольник с надписью HTML">
       </p>
       <p>Подпись к картинке: это не файл с диска, а простая SVG-картинка прямо в коде.</p>
+      <p>Первая строка.<br>Вторая строка — после тега br внутри абзаца.</p>
     </section>
 
     <hr>
@@ -90,7 +122,7 @@
 
     <section id="таблица">
       <h2>Маленькая таблица</h2>
-      <table border="1" cellpadding="6" cellspacing="0">
+      <table>
         <tr>
           <th>Тег</th>
           <th>Зачем</th>
@@ -108,8 +140,18 @@
           <td>Ссылка</td>
         </tr>
       </table>
-      <br>
-      <p>Строка выше — после тега br. Он просто переносит текст на новую строку.</p>
+    </section>
+
+    <hr>
+
+    <section id="форма">
+      <h2>Маленькая форма</h2>
+      <p>Ниже — поле и кнопка. Подпись связана с полем через <code>for</code> и <code>id</code>.</p>
+      <form class="feedback" action="#" method="post" onsubmit="return false;">
+        <label for="nickname">Как тебя зовут?</label>
+        <input type="text" id="nickname" name="nickname" placeholder="Имя">
+        <button type="submit">Отправить</button>
+      </form>
     </section>
   </main>
 

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Задание: шапка маркетплейса</title>
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: #f5f5f5;
+      color: #1a1a1a;
+      min-height: 100vh;
+    }
+
+    /* TODO: синий фон шапки (#005bff), белый текст, padding */
+    .site-header {
+    }
+
+    /* TODO: flex-ряд: логотип, каталог, поиск, действия.
+       gap, выравнивание по центру. max-width + margin: auto для центрирования. */
+    .site-header__inner {
+    }
+
+    /* TODO: крупный жирный белый логотип, без подчёркивания */
+    .logo {
+    }
+
+    /* TODO: кнопка «Каталог» — чуть темнее синего, скругление */
+    .catalog-btn {
+    }
+
+    /* TODO: поиск растягивается — flex: 1.
+       Белый фон, поле + розовая кнопка «Найти» в одном flex-ряду. */
+    .search {
+    }
+
+    /* TODO: у поля при :focus — заметная обводка (box-shadow), не голый outline: none */
+    .search__input {
+    }
+
+    .search__input:focus {
+    }
+
+    .search__btn {
+    }
+
+    /* TODO: ссылки справа (margin-left: auto), иконка над текстом (flex-direction: column) */
+    .nav-actions {
+    }
+
+    .nav-actions a {
+    }
+
+    /* TODO: красный кружок-счётчик на корзине — position: absolute */
+    .nav-actions__badge {
+    }
+
+    .demo-page {
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 1.5rem 1rem;
+      color: #64748b;
+    }
+
+    /* TODO: на узком экране поиск на всю ширину следующей строки (order + flex-basis: 100%) */
+    @media (max-width: 720px) {
+      .search {
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="logo" href="#">ShopRu</a>
+      <button type="button" class="catalog-btn">☰ Каталог</button>
+      <form class="search" action="#" role="search">
+        <input class="search__input" type="search" placeholder="Искать на ShopRu" aria-label="Поиск">
+        <button class="search__btn" type="submit">Найти</button>
+      </form>
+      <nav class="nav-actions" aria-label="Личный кабинет">
+        <a href="#">
+          <span class="nav-actions__icon" aria-hidden="true">📦</span>
+          Заказы
+        </a>
+        <a href="#">
+          <span class="nav-actions__icon" aria-hidden="true">♡</span>
+          Избранное
+        </a>
+        <a href="#">
+          <span class="nav-actions__badge">2</span>
+          <span class="nav-actions__icon" aria-hidden="true">🛒</span>
+          Корзина
+        </a>
+      </nav>
+    </div>
+  </header>
+  <main class="demo-page">
+    <p>Под шапкой — обычное содержимое страницы. Сузь окно: поиск должен перейти на отдельную строку.</p>
+  </main>
+</body>
+</html>

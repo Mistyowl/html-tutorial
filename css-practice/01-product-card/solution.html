@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Решение: карточка товара</title>
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      font-family: system-ui, sans-serif;
+      background: #f0f2f5;
+      color: #1a1a1a;
+    }
+
+    .card {
+      position: relative;
+      width: 260px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    .card__image {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: #e8eef5;
+    }
+
+    .card__badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      padding: 0.25rem 0.5rem;
+      background: #e11d48;
+      color: #fff;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .card__body {
+      padding: 0.9rem 1rem 1.1rem;
+    }
+
+    .card__title {
+      margin: 0 0 0.35rem;
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.35;
+    }
+
+    .card__rating {
+      margin: 0 0 0.75rem;
+      font-size: 0.8125rem;
+      color: #6b7280;
+    }
+
+    .card__prices {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .card__price {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #111;
+    }
+
+    .card__old-price {
+      font-size: 0.875rem;
+      color: #9ca3af;
+      text-decoration: line-through;
+    }
+
+    .card__btn {
+      display: block;
+      width: 100%;
+      padding: 0.7rem 1rem;
+      border: none;
+      border-radius: 8px;
+      background: #005bff;
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .card__btn:hover {
+      background: #0047cc;
+    }
+
+    .card__btn:focus-visible {
+      outline: 2px solid #005bff;
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+  <article class="card">
+    <span class="card__badge">−20%</span>
+    <img
+      class="card__image"
+      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='360'%3E%3Crect fill='%23dbeafe' width='520' height='360'/%3E%3Crect x='160' y='90' width='200' height='140' rx='16' fill='%233b82f6'/%3E%3Ctext x='50%25' y='88%25' fill='%231e3a8a' font-family='sans-serif' font-size='22' text-anchor='middle'%3EНаушники%3C/text%3E%3C/svg%3E"
+      width="260"
+      height="180"
+      alt="Беспроводные наушники">
+    <div class="card__body">
+      <h2 class="card__title">Беспроводные наушники Wave X</h2>
+      <p class="card__rating">★ 4.8 · 128 отзывов</p>
+      <div class="card__prices">
+        <span class="card__price">3 190 ₽</span>
+        <span class="card__old-price">3 990 ₽</span>
+      </div>
+      <button type="button" class="card__btn">В корзину</button>
+    </div>
+  </article>
+</body>
+</html>
